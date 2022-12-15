@@ -3,4 +3,8 @@ public struct ForestIOSTemplate {
 
     public init() {
     }
+    
+    func test() {
+        print("test!")
+    }
 }
