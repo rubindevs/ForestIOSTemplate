@@ -8,4 +8,9 @@ final class ForestIOSTemplateTests: XCTestCase {
         // results.
         XCTAssertEqual(ForestIOSTemplate().text, "Hello, World!")
     }
+    
+    func testUI() {
+        let app = XCUIApplication()
+        app.launch()
+    }
 }
