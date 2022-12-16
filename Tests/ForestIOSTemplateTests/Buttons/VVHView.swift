@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class VVHView: BaseView {
+public class VVHView: BaseView {
     
-    override func initViews(parent: UIViewController?) {
+    public override func initViews(parent: UIViewController?) {
         
     }
 }

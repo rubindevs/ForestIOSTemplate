@@ -12,12 +12,12 @@ import Foundation
 import UIKit
 import SnapKit
 
-class LLVView: BaseView {
+public class LLVView: BaseView {
     
     var label_top = UILabel()
     var label_bottom = UILabel()
     
-    override func initViews(parent: UIViewController?) {
+    public override func initViews(parent: UIViewController?) {
         addSubview(label_top)
         label_top.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -31,7 +31,7 @@ class LLVView: BaseView {
         }
     }
     
-    func set(align: ViewVAlign, interval: Int) {
+    public func set(align: ViewVAlign, interval: Int) {
         label_top.snp.remakeConstraints { make in
             make.top.equalToSuperview()
             align.inflateContraints(make)

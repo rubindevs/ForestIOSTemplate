@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class BaseView: UIView {
+public class BaseView: UIView {
     
     struct Corner {
         let radius: CGFloat
@@ -33,7 +33,7 @@ class BaseView: UIView {
         super.init(frame: frame)
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         switch corner.type {
         case .radius:
             self.layer.cornerRadius = corner.radius

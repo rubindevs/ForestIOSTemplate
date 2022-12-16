@@ -9,12 +9,12 @@ import Foundation
 import UIKit
 import SnapKit
 
-class ILVView: BaseView {
+public class ILVView: BaseView {
     
     var image_top = UIImageView()
     var label_bottom = UILabel()
     
-    override func initViews(parent: UIViewController?) {
+    public override func initViews(parent: UIViewController?) {
         addSubview(image_top)
         image_top.snp.makeConstraints { make in
             make.top.equalToSuperview()
@@ -28,7 +28,7 @@ class ILVView: BaseView {
         }
     }
     
-    func set(align: ViewVAlign, interval: Int) {
+    public func set(align: ViewVAlign, interval: Int) {
         image_top.snp.remakeConstraints { make in
             make.top.equalToSuperview()
             align.inflateContraints(make)

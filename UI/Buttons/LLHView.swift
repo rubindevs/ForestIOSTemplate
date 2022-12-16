@@ -14,12 +14,12 @@ import Foundation
 import UIKit
 import SnapKit
 
-class LLHView: BaseView {
+public class LLHView: BaseView {
     
     var label_left = UILabel()
     var label_right = UILabel()
     
-    override func initViews(parent: UIViewController?) {
+    public override func initViews(parent: UIViewController?) {
         addSubview(label_left)
         label_left.snp.makeConstraints { make in
             make.leading.equalToSuperview()
@@ -33,7 +33,7 @@ class LLHView: BaseView {
         }
     }
     
-    func set(alignV: ViewVAlign, alignH: ViewHAlign, interval: Int) {
+    public func set(alignV: ViewVAlign, alignH: ViewHAlign, interval: Int) {
         label_left.snp.remakeConstraints { make in
             alignV.inflateContraints(make)
             alignH.inflateLeftContraints(make, label_right, interval)

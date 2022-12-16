@@ -10,12 +10,12 @@ import Foundation
 import UIKit
 import SnapKit
 
-class ILHView: BaseView {
+public class ILHView: BaseView {
     
     var image_left = UIImageView()
     var label_right = UILabel()
     
-    override func initViews(parent: UIViewController?) {
+    public override func initViews(parent: UIViewController?) {
         addSubview(image_left)
         image_left.snp.makeConstraints { make in
             make.leading.equalToSuperview()
@@ -29,7 +29,7 @@ class ILHView: BaseView {
         }
     }
     
-    func set(alignV: ViewVAlign, alignH: ViewHAlign, interval: Int) {
+    public func set(alignV: ViewVAlign, alignH: ViewHAlign, interval: Int) {
         image_left.snp.remakeConstraints { make in
             alignV.inflateContraints(make)
             alignH.inflateLeftContraints(make, label_right, interval)

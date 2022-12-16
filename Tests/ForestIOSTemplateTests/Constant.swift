@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-enum ViewHAlign {
+public enum ViewHAlign {
     case left
     case center
     case right
@@ -43,7 +43,7 @@ enum ViewHAlign {
     }
 }
 
-enum ViewVAlign {
+public enum ViewVAlign {
     case top
     case center
     case bottom
