@@ -21,6 +21,14 @@ public class BottomNav: BaseView {
         
     }
     
+    public override init() {
+        super.init()
+    }
+    
+    public required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     public func set(items: [NavItem]) {
         subviews.forEach { $0.removeFromSuperview() }
         var beforeView: UIView? = nil
