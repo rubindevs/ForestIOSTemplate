@@ -25,11 +25,11 @@ public class BaseView: UIView {
     var fixedWidth: CGFloat = 0
     var fixedHeight: CGFloat = 0
     
-    required init(coder aDecoder: NSCoder) {
+    public required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
     }
     

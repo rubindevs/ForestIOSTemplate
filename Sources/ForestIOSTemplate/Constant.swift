@@ -10,9 +10,9 @@ import UIKit
 import SnapKit
 
 public struct ViewImage {
-    let width: Int
-    let height: Int
-    let image: String
+    public let width: Int
+    public let height: Int
+    public let image: String
     
     func inflateConstraints(_ make: ConstraintMaker) {
         make.width.equalTo(width)
@@ -25,9 +25,9 @@ public struct ViewImage {
 }
 
 public struct ViewText {
-    let text: String
-    let color: UIColor
-    let font: UIFont
+    public let text: String
+    public let color: UIColor
+    public let font: UIFont
     
     func getWidth(height: CGFloat) -> CGFloat {
         var height = height == 0 ? UIScreen.main.bounds.height : height
