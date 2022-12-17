@@ -10,7 +10,7 @@ import UIKit
 
 class BaseLayout {
     
-    func initViews(_ rootView: UIView) {
+    public func initViews(_ rootView: UIView) {
         
     }
 }

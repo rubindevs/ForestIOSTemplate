@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum FontFamily {
+public enum FontFamily {
     case Default
     
     func get(_ iphoneSize: CGFloat, _ weight: Int) -> UIFont {
@@ -28,7 +28,7 @@ enum FontFamily {
 }
 
 extension UIView {
-    func setText(_ text: String, _ color: UIColor, _ font: UIFont, state: UIControl.State = .normal) {
+    public func setText(_ text: String, _ color: UIColor, _ font: UIFont, state: UIControl.State = .normal) {
         if let label = self as? UILabel {
             label.text = text
             label.textColor = color
@@ -50,7 +50,7 @@ extension UIView {
 }
 
 extension UIImageView {
-    func setImage(_ image: String, _ color: UIColor? = nil) {
+    public func setImage(_ image: String, _ color: UIColor? = nil) {
         if let color = color {
             self.image = UIImage(named: image)?.withRenderingMode(.alwaysTemplate)
             self.tintColor = color
