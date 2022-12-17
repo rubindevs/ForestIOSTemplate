@@ -31,7 +31,7 @@ public class LLVView: BaseView {
         }
     }
     
-    public func set(align: ViewVAlign, interval: Int) {
+    public func set(align: ViewHAlign, interval: Int) {
         label_top.snp.remakeConstraints { make in
             make.top.equalToSuperview()
             align.inflateContraints(make)
