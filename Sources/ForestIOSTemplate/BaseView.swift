@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-public class BaseView: UIView {
+open class BaseView: UIView {
     
     public struct Corner {
         public let radius: CGFloat

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class BaseLayout {
+open class BaseLayout {
     
     public func initViews(_ rootView: UIView) {
         
