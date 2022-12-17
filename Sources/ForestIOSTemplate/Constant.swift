@@ -9,6 +9,46 @@ import Foundation
 import UIKit
 import SnapKit
 
+public struct ViewImage {
+    let width: Int
+    let height: Int
+    let image: String
+    
+    func inflateConstraints(_ make: ConstraintMaker) {
+        make.width.equalTo(width)
+        make.height.equalTo(height)
+    }
+    
+    func setToImageView(_ imageView: UIImageView) {
+        imageView.setImage(image)
+    }
+}
+
+public struct ViewText {
+    let text: String
+    let color: UIColor
+    let font: UIFont
+    
+    func getWidth(height: CGFloat) -> CGFloat {
+        var height = height == 0 ? UIScreen.main.bounds.height : height
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = text.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+        return ceil(boundingBox.width)
+    }
+    
+    func getHeight(width: CGFloat) -> CGFloat {
+        var width = width == 0 ? UIScreen.main.bounds.width : width
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = text.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [NSAttributedString.Key.font: font], context: nil)
+    
+        return ceil(boundingBox.height)
+    }
+    
+    func setToLabel(_ label: UILabel) {
+        label.setText(text, color, font)
+    }
+}
+
 public enum ViewHAlign {
     case left
     case center

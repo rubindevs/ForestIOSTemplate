@@ -21,12 +21,21 @@ class ViewController: UIViewController {
 class layout_view: BaseLayout {
     
     override func initViews(_ rootView: UIView) {
-        let view = LLHView()
-        view.makeEasyConstraints(rootView: rootView, "ls20", "ts100", "w200", "h200")
-        view.backgroundColor = .red
-        view.set(alignV: .center, alignH: .right, interval: 5)
-        view.label_left.setText("Test", .white, FontFamily.Default.get(14, 400))
-        view.label_right.setText("Test2", .white, FontFamily.Default.get(14, 400))
+//        let view = LLHView()
+//        view.makeEasyConstraints(rootView: rootView, "ls20", "ts100", "w200", "h200")
+//        view.backgroundColor = .red
+//        view.set(alignV: .center, alignH: .right, interval: 5)
+//        view.label_left.setText("Test", .white, FontFamily.Default.get(14, 400))
+//        view.label_right.setText("Test2", .white, FontFamily.Default.get(14, 400))
+        
+        let view = BottomNav()
+        view.makeEasyConstraints(rootView: rootView, "ls0", "bs0", "rs0", "h200")
+        let item = BottomNav.NavItem(
+            image: ViewImage(width: 61, height: 61, image: "icon_user_empty"),
+            title: ViewText(text: "Hi", color: .white, font: FontFamily.Default.get(14, 400))) {
+                print("hello")
+            }
+        view.set(items: [item, item, item, item])
     }
 }
 
