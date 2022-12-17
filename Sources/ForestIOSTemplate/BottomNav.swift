@@ -15,18 +15,16 @@ public class BottomNav: BaseView {
         let image: ViewImage
         let title: ViewText
         let callback: () -> Void
+        
+        public init(image: ViewImage, title: ViewText, callback: @escaping () -> Void) {
+            self.image = image
+            self.title = title
+            self.callback = callback
+        }
     }
     
     public override func initViews(parent: UIViewController?) {
         
-    }
-    
-    public override init() {
-        super.init()
-    }
-    
-    public required init(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     public func set(items: [NavItem]) {
