@@ -13,8 +13,8 @@ import SnapKit
 
 public class SILLView: BaseView {
     
-    var label_left = UIImageView()
-    var view_right = LLVView()
+    public var label_left = UIImageView()
+    public var view_right = LLVView()
     
     public override func initViews(parent: UIViewController?) {
         addSubview(label_left)

@@ -11,8 +11,8 @@ import SnapKit
 
 public class ILVView: BaseView {
     
-    var image_top = UIImageView()
-    var label_bottom = UILabel()
+    public var image_top = UIImageView()
+    public var label_bottom = UILabel()
     
     public override func initViews(parent: UIViewController?) {
         addSubview(image_top)

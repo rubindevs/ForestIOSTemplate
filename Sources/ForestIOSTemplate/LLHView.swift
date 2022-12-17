@@ -16,8 +16,8 @@ import SnapKit
 
 public class LLHView: BaseView {
     
-    var label_left = UILabel()
-    var label_right = UILabel()
+    public var label_left = UILabel()
+    public var label_right = UILabel()
     
     public override func initViews(parent: UIViewController?) {
         addSubview(label_left)

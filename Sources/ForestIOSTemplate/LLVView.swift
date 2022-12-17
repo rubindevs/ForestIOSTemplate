@@ -14,8 +14,8 @@ import SnapKit
 
 public class LLVView: BaseView {
     
-    var label_top = UILabel()
-    var label_bottom = UILabel()
+    public var label_top = UILabel()
+    public var label_bottom = UILabel()
     
     public override func initViews(parent: UIViewController?) {
         addSubview(label_top)

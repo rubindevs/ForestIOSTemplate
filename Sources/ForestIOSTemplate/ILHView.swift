@@ -12,8 +12,8 @@ import SnapKit
 
 public class ILHView: BaseView {
     
-    var image_left = UIImageView()
-    var label_right = UILabel()
+    public var image_left = UIImageView()
+    public var label_right = UILabel()
     
     public override func initViews(parent: UIViewController?) {
         addSubview(image_left)
