@@ -44,7 +44,7 @@ public class BaseView: UIView {
         fixedHeight = self.frame.height
     }
     
-    init() {
+    public init() {
         super.init(frame: CGRect.zero)
         initViews()
     }
@@ -55,7 +55,7 @@ public class BaseView: UIView {
     
     var clickListener: (() -> Void)?
     var button: UIButton?
-    func setOnClickListener(listener: @escaping () -> Void) {
+    public func setOnClickListener(listener: @escaping () -> Void) {
         self.clickListener = listener
         button?.removeFromSuperview()
         button = UIButton()
@@ -72,12 +72,12 @@ public class BaseView: UIView {
         self.clickListener?()
     }
     
-    func set(corner: Corner) {
+    public func set(corner: Corner) {
         self.corner = corner
     }
     
     
-    func makeEasyConstraints(rootView: UIView, topView: UIView? = nil, bottomView: UIView? = nil, leadingView: UIView? = nil, trailingView: UIView? = nil, isSafe: Bool = false, _ formats: String...) {
+    public func makeEasyConstraints(rootView: UIView, topView: UIView? = nil, bottomView: UIView? = nil, leadingView: UIView? = nil, trailingView: UIView? = nil, isSafe: Bool = false, _ formats: String...) {
         rootView.addSubview(self)
         self.snp.makeEasyConstraints(topView: topView, bottomView: bottomView, leadingView: leadingView, trailingView: trailingView, completion: { width, height in
             self.fixedWidth = CGFloat(width)
@@ -85,7 +85,7 @@ public class BaseView: UIView {
         }, formats)
     }
     
-    func makeEasyConstraints(topView: UIView? = nil, bottomView: UIView? = nil, leadingView: UIView? = nil, trailingView: UIView? = nil, _ formats: String...) {
+    public func makeEasyConstraints(topView: UIView? = nil, bottomView: UIView? = nil, leadingView: UIView? = nil, trailingView: UIView? = nil, _ formats: String...) {
         self.snp.makeEasyConstraints(topView: topView, bottomView: bottomView, leadingView: leadingView, trailingView: trailingView, completion: { width, height in
             self.fixedWidth = CGFloat(width)
             self.fixedHeight = CGFloat(height)
@@ -96,11 +96,11 @@ public class BaseView: UIView {
         self.snp.makeConstraints(closure)
     }
     
-    var width: CGFloat {
+    public var width: CGFloat {
         return fixedWidth
     }
     
-    var height: CGFloat {
+    public var height: CGFloat {
         return fixedHeight
     }
 }

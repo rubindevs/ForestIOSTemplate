@@ -14,6 +14,12 @@ public struct ViewImage {
     public let height: Int
     public let image: String
     
+    public init(width: Int, height: Int, image: String) {
+        self.width = width
+        self.height = height
+        self.image = image
+    }
+    
     func inflateConstraints(_ make: ConstraintMaker) {
         make.width.equalTo(width)
         make.height.equalTo(height)
@@ -28,6 +34,12 @@ public struct ViewText {
     public let text: String
     public let color: UIColor
     public let font: UIFont
+    
+    public init(text: String, color: UIColor, font: UIFont) {
+        self.text = text
+        self.color = color
+        self.font = font
+    }
     
     func getWidth(height: CGFloat) -> CGFloat {
         var height = height == 0 ? UIScreen.main.bounds.height : height

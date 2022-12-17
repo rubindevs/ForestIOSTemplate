@@ -11,7 +11,7 @@ import UIKit
 public enum FontFamily {
     case Default
     
-    func get(_ iphoneSize: CGFloat, _ weight: Int) -> UIFont {
+    public func get(_ iphoneSize: CGFloat, _ weight: Int) -> UIFont {
         var size = iphoneSize
         if weight == 400 {
             return UIFont.systemFont(ofSize: size, weight: .regular)
