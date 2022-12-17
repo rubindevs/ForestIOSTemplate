@@ -13,12 +13,16 @@ import SnapKit
 
 public class BaseView: UIView {
     
-    struct Corner {
-        let radius: CGFloat
-        let type: Types
-        enum Types {
+    public struct Corner {
+        public let radius: CGFloat
+        public let type: Types
+        public enum Types {
             case radius
             case halfcircle
+        }
+        public init(radius: CGFloat, type: Types) {
+            self.radius = radius
+            self.type = type
         }
     }
     var corner = Corner(radius: 0, type: .radius)

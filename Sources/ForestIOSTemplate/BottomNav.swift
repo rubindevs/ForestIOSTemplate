@@ -12,9 +12,9 @@ import SnapKit
 public class BottomNav: BaseView {
     
     public struct NavItem {
-        let image: ViewImage
-        let title: ViewText
-        let callback: () -> Void
+        public let image: ViewImage
+        public let title: ViewText
+        public let callback: () -> Void
         
         public init(image: ViewImage, title: ViewText, callback: @escaping () -> Void) {
             self.image = image
