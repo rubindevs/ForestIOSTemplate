@@ -41,13 +41,13 @@ public class SearchTextField: BaseView, UITextFieldDelegate {
         self.view_image.isHidden = image == nil
         self.callback = callback
         self.view_image.snp.remakeConstraints { make in
-            image?.inflateConstraints(make)
+            image?.inflateConstraints(make, hoffset: interval)
         }
         image?.setToImageView(view_image)
         
         self.textField.snp.remakeConstraints { make in
             if image != nil {
-                make.leading.equalTo(view_image.snp.trailing).offset(interval)
+                make.leading.equalTo(view_image.snp.trailing)
             } else {
                 make.leading.equalToSuperview()
             }
