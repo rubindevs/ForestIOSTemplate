@@ -43,9 +43,14 @@ public class SearchTextField: BaseView, UITextFieldDelegate {
         self.view_image.snp.remakeConstraints { make in
             image?.inflateConstraints(make)
         }
+        image?.setToImageView(view_image)
         
         self.textField.snp.remakeConstraints { make in
-            make.leading.equalTo(view_image.snp.trailing).offset(interval)
+            if image != nil {
+                make.leading.equalTo(view_image.snp.trailing).offset(interval)
+            } else {
+                make.leading.equalToSuperview()
+            }
             make.top.bottom.equalToSuperview()
             make.trailing.equalToSuperview()
         }
