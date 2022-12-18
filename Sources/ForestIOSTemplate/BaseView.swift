@@ -76,6 +76,15 @@ open class BaseView: UIView {
         self.clickListener?()
     }
     
+    public func setDismissKeyboard() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        endEditing(true)
+    }
+    
     public func set(corner: Corner) {
         self.corner = corner
     }
