@@ -50,5 +50,6 @@ public class ILVView: BaseView {
             }
             label.alignH.inflateConstraints(make)
         }
+        label.setToLabel(label_bottom)
     }
 }

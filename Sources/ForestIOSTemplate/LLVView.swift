@@ -42,6 +42,7 @@ public class LLVView: BaseView {
             }
             label1.alignH.inflateConstraints(make)
         }
+        label1.setToLabel(label_top)
         
         label_bottom.snp.remakeConstraints { make in
             if label1.alignV == .center && label2.alignV == .center {
@@ -53,5 +54,6 @@ public class LLVView: BaseView {
             }
             label2.alignH.inflateConstraints(make)
         }
+        label2.setToLabel(label_bottom)
     }
 }
