@@ -31,8 +31,8 @@ class layout_view: BaseLayout {
         let view = BottomNav()
         view.makeEasyConstraints(rootView: rootView, "ls0", "bs0", "rs0", "h200")
         let item = BottomNav.NavItem(
-            image: ViewImage(width: 61, height: 61, image: "icon_user_empty"),
-            title: ViewText(text: "Hi", color: .white, font: FontFamily.Default.get(14, 400))) {
+            image: ViewImage(width: 61, height: 61, image: "icon_user_empty", alignV: .center, alignH: .center),
+            title: ViewText(text: "Hi", color: .white, font: FontFamily.Default.get(14, 400), alignV: .center, alignH: .center)) {
                 print("hello")
             }
         view.set(items: [item, item, item, item])

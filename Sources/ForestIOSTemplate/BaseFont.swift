@@ -22,7 +22,7 @@ public enum FontFamily {
         } else if weight == 700 {
             return UIFont.systemFont(ofSize: size, weight: .bold)
         } else {
-            return  UIFont.systemFont(ofSize: size, weight: .regular)
+            return UIFont.systemFont(ofSize: size, weight: .regular)
         }
     }
 }

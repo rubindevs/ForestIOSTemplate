@@ -29,15 +29,29 @@ public class ILHView: BaseView {
         }
     }
     
-    public func set(alignV: ViewVAlign, alignH: ViewHAlign, interval: Int) {
+    public func set(image: ViewImage, label: ViewText, interval: CGFloat) {
         image_left.snp.remakeConstraints { make in
-            alignV.inflateContraints(make)
-            alignH.inflateLeftContraints(make, label_right, interval)
+            if image.alignH == .center && label.alignH == .center {
+                image.inflateConstraints(make, hoffset: -(label.getWidth(height: 0) + interval) / 2)
+            } else {
+                image.inflateConstraints(make)
+            }
         }
+        image.setToImageView(image_left)
         
         label_right.snp.remakeConstraints { make in
-            alignV.inflateContraints(make)
-            alignH.inflateRightContraints(make, image_left, interval)
+            if image.alignH == .left && label.alignH == .left {
+                make.leading.equalTo(image_left.snp.trailing).offset(interval)
+                label.alignV.inflateConstraints(make)
+            } else if image.alignH == .right && label.alignH == .right {
+                make.trailing.equalTo(image_left.snp.leading).offset(-interval)
+                label.alignV.inflateConstraints(make)
+            } else if image.alignH == .center && label.alignH == .center {
+                label.inflateConstraints(make, hoffset: (image.width + interval) / 2)
+            } else {
+                label.inflateConstraints(make)
+            }
         }
+        label.setToLabel(label_right)
     }
 }

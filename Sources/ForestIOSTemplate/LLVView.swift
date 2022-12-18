@@ -31,15 +31,27 @@ public class LLVView: BaseView {
         }
     }
     
-    public func set(align: ViewHAlign, interval: Int) {
+    public func set(label1: ViewText, label2: ViewText, interval: CGFloat) {
         label_top.snp.remakeConstraints { make in
-            make.top.equalToSuperview()
-            align.inflateContraints(make)
+            if label1.alignV == .center && label2.alignV == .center {
+                label1.alignV.inflateConstraints(make, voffset: -(label2.getHeight(width: 0) + interval) / 2)
+            } else if label1.alignV == .bottom && label2.alignV == .bottom {
+                make.bottom.equalTo(label_bottom.snp.top)
+            } else {
+                label1.alignV.inflateConstraints(make)
+            }
+            label1.alignH.inflateConstraints(make)
         }
         
         label_bottom.snp.remakeConstraints { make in
-            make.top.equalTo(label_top.snp.bottom).offset(interval)
-            align.inflateContraints(make)
+            if label1.alignV == .center && label2.alignV == .center {
+                label2.alignV.inflateConstraints(make, voffset: (label1.getHeight(width: 0) + interval) / 2)
+            } else if label1.alignV == .top && label2.alignV == .top {
+                make.top.equalTo(label_top.snp.bottom).offset(interval)
+            } else {
+                label2.alignV.inflateConstraints(make)
+            }
+            label2.alignH.inflateConstraints(make)
         }
     }
 }

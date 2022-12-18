@@ -11,7 +11,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-public class SILLView: BaseView {
+public class ILLVLeftView: BaseView {
     
     public var image_left = UIImageView()
     public var view_right = LLVView()
@@ -30,15 +30,20 @@ public class SILLView: BaseView {
         }
     }
     
-    public func set(alignV: ViewVAlign, alignH: ViewHAlign, interval: Int) {
-        image_left.snp.remakeConstraints { make in
-            alignV.inflateContraints(make)
-            alignH.inflateLeftContraints(make, view_right, interval)
+    public func set(image: ViewImage, llv: LLVView, interval: Int) {
+        if image.alignH != .left {
+            return
         }
+        subviews.filter { $0 is LLVView }.forEach { $0.removeFromSuperview() }
+        image_left.snp.remakeConstraints { make in
+            image.inflateConstraints(make)
+        }
+        image.setToImageView(image_left)
         
-        view_right.snp.remakeConstraints { make in
-            alignV.inflateContraints(make)
-            alignH.inflateRightContraints(make, image_left, interval)
+        addSubview(llv)
+        llv.snp.makeConstraints { make in
+            make.leading.equalTo(image_left.snp.bottom).offset(interval)
+            make.top.bottom.trailing.equalToSuperview()
         }
     }
 }

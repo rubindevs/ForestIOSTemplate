@@ -10,17 +10,23 @@ import UIKit
 import SnapKit
 
 public struct ViewImage {
-    public let width: Int
-    public let height: Int
+    public let width: CGFloat
+    public let height: CGFloat
     public let image: String
+    public let alignV: ViewAlignV
+    public let alignH: ViewAlignH
     
-    public init(width: Int, height: Int, image: String) {
+    public init(width: CGFloat, height: CGFloat, image: String, alignV: ViewAlignV, alignH: ViewAlignH) {
         self.width = width
         self.height = height
         self.image = image
+        self.alignV = alignV
+        self.alignH = alignH
     }
     
-    func inflateConstraints(_ make: ConstraintMaker) {
+    func inflateConstraints(_ make: ConstraintMaker, voffset: CGFloat = 0, hoffset: CGFloat = 0) {
+        alignV.inflateConstraints(make, voffset: voffset)
+        alignH.inflateConstraints(make, hoffset: hoffset)
         make.width.equalTo(width)
         make.height.equalTo(height)
     }
@@ -34,11 +40,15 @@ public struct ViewText {
     public let text: String
     public let color: UIColor
     public let font: UIFont
+    public let alignV: ViewAlignV
+    public let alignH: ViewAlignH
     
-    public init(text: String, color: UIColor, font: UIFont) {
+    public init(text: String, color: UIColor, font: UIFont, alignV: ViewAlignV, alignH: ViewAlignH) {
         self.text = text
         self.color = color
         self.font = font
+        self.alignV = alignV
+        self.alignH = alignH
     }
     
     func getWidth(height: CGFloat) -> CGFloat {
@@ -59,52 +69,37 @@ public struct ViewText {
     func setToLabel(_ label: UILabel) {
         label.setText(text, color, font)
     }
+    
+    func inflateConstraints(_ make: ConstraintMaker, voffset: CGFloat = 0, hoffset: CGFloat = 0) {
+        alignV.inflateConstraints(make, voffset: voffset)
+        alignH.inflateConstraints(make, hoffset: hoffset)
+    }
 }
 
-public enum ViewHAlign {
+public enum ViewAlignH {
     case left
     case center
     case right
-    case side
     
-    func inflateContraints(_ make: ConstraintMaker) {
+    func inflateConstraints(_ make: ConstraintMaker, hoffset: CGFloat = 0) {
         switch self {
-        case .left: make.leading.equalToSuperview()
-        case .center: make.centerX.equalToSuperview()
-        case .right: make.trailing.equalToSuperview()
-        case .side: break
-        }
-    }
-    
-    func inflateLeftContraints(_ make: ConstraintMaker, _ view: UIView? = nil, _ offset: Int = 0) {
-        switch self {
-        case .left: make.leading.equalToSuperview()
-        case .center: make.centerX.equalToSuperview()
-        case .right: make.trailing.equalTo(view!.snp.leading).offset(-offset)
-        case .side: make.leading.equalToSuperview()
-        }
-    }
-    
-    func inflateRightContraints(_ make: ConstraintMaker, _ view: UIView? = nil, _ offset: Int = 0) {
-        switch self {
-        case .left: make.leading.equalTo(view!.snp.trailing).offset(offset)
-        case .center: make.leading.equalTo(view!.snp.trailing).offset(offset)
-        case .right: make.trailing.equalToSuperview()
-        case .side: make.trailing.equalToSuperview()
+        case .left: make.leading.equalToSuperview().offset(hoffset)
+        case .center: make.centerX.equalToSuperview().offset(hoffset)
+        case .right: make.trailing.equalToSuperview().offset(hoffset)
         }
     }
 }
 
-public enum ViewVAlign {
+public enum ViewAlignV {
     case top
     case center
     case bottom
     
-    func inflateContraints(_ make: ConstraintMaker) {
+    func inflateConstraints(_ make: ConstraintMaker, voffset: CGFloat = 0) {
         switch self {
-        case .top: make.top.equalToSuperview()
-        case .center: make.centerY.equalToSuperview()
-        case .bottom: make.bottom.equalToSuperview()
+        case .top: make.top.equalToSuperview().offset(voffset)
+        case .center: make.centerY.equalToSuperview().offset(voffset)
+        case .bottom: make.bottom.equalToSuperview().offset(voffset)
         }
     }
 }
