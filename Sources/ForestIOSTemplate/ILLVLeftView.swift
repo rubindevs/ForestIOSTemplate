@@ -42,7 +42,7 @@ public class ILLVLeftView: BaseView {
         
         addSubview(llv)
         llv.snp.makeConstraints { make in
-            make.leading.equalTo(image_left.snp.bottom).offset(interval)
+            make.leading.equalTo(image_left.snp.trailing).offset(interval)
             make.top.bottom.trailing.equalToSuperview()
         }
     }
