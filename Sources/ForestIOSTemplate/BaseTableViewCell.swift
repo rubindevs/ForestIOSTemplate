@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class BaseTableViewCell: UITableViewCell {
+open class BaseTableViewCell: UITableViewCell {
     
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -19,6 +19,6 @@ public class BaseTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func initViews() {
+    open func initViews() {
     }
 }
