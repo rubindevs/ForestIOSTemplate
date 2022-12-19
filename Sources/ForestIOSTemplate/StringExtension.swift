@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension String {
-    var url: URL? {
+    public var url: URL? {
         if let url = URL(string: self) {
             return url
         }
