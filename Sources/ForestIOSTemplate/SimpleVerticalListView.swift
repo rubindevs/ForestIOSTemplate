@@ -27,7 +27,7 @@ open class SimpleVerticalListView: BaseView, UITableViewDataSource, UITableViewD
         table_main.separatorStyle = .none
     }
     
-    func set(register: @escaping (UITableView) -> Void, count: @escaping () -> Int, cellHeight: @escaping (IndexPath) -> CGFloat, cellData: @escaping (UITableView, IndexPath) -> UITableViewCell, onTouch: @escaping (IndexPath) -> Void) {
+    public func set(register: @escaping (UITableView) -> Void, count: @escaping () -> Int, cellHeight: @escaping (IndexPath) -> CGFloat, cellData: @escaping (UITableView, IndexPath) -> UITableViewCell, onTouch: @escaping (IndexPath) -> Void) {
         register(table_main)
         self.cellHeight = cellHeight
         self.cellData = cellData
