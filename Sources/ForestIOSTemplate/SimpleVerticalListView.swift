@@ -11,11 +11,11 @@ import SnapKit
 
 open class SimpleVerticalListView: BaseView, UITableViewDataSource, UITableViewDelegate {
     
-    let table_main = UITableView(frame: .zero, style: .grouped)
-    var count: (() -> Int)? = nil
-    var cellHeight: ((IndexPath) -> CGFloat)? = nil
-    var cellData: ((UITableView, IndexPath) -> UITableViewCell)? = nil
-    var onTouch: ((IndexPath) -> Void)? = nil
+    public let table_main = UITableView(frame: .zero, style: .grouped)
+    public var count: (() -> Int)? = nil
+    public var cellHeight: ((IndexPath) -> CGFloat)? = nil
+    public var cellData: ((UITableView, IndexPath) -> UITableViewCell)? = nil
+    public var onTouch: ((IndexPath) -> Void)? = nil
     
     open override func initViews(parent: UIViewController?) {
         addSubview(table_main)
