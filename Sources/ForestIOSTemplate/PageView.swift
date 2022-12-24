@@ -23,11 +23,11 @@ open class PageView<T, U: BaseLayout>: BaseView {
         }
     }
     
-    public func set(parent: UIViewController, items: [T], inflate: @escaping (T, U) -> Void) {
+    public func set(parent: UIViewController, items: [T], inflate: @escaping (Int, T, U) -> Void, current: @escaping (Int) -> Void) {
         if !parent.has(controller_page) {
             parent.add(controller_page, view: layout_page, topView: nil)
         }
-        controller_page.set(items: items, inflate: inflate)
+        controller_page.set(items: items, inflate: inflate, current: current)
     }
     
     
@@ -35,6 +35,7 @@ open class PageView<T, U: BaseLayout>: BaseView {
 
         var pages: [UIViewController] = []
         var items: [T] = []
+        var current: ((Int) -> Void)? = nil
 
         override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
             super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -51,7 +52,8 @@ open class PageView<T, U: BaseLayout>: BaseView {
             delegate = self
         }
         
-        func set(items: [T], inflate: @escaping (T, U) -> Void) {
+        func set(items: [T], inflate: @escaping (Int, T, U) -> Void, current: @escaping (Int) -> Void) {
+            self.current = current
             if !items.isEmpty {
                 pages = (0..<items.count).map { PageViewController(index: $0, item: items[$0], inflate: inflate) }
                 setViewControllers([pages[0]], direction: .forward, animated: false, completion: nil)
@@ -98,6 +100,7 @@ open class PageView<T, U: BaseLayout>: BaseView {
             if completed {
                 if let currentViewController = pageViewController.viewControllers?.first,
                    let index = pages.firstIndex(of: currentViewController) {
+                    self.current?(index)
 //                    if let parent = parent as? HomeViewController {
 //                        parent.layout.view_banners.set(index: index, total: pages.count)
 //                    }
@@ -111,9 +114,9 @@ open class PageView<T, U: BaseLayout>: BaseView {
         var index = 0
         var item: T? = nil
         var layout = U()
-        var inflate: ((T, U) -> Void)? = nil
+        var inflate: ((Int, T, U) -> Void)? = nil
         
-        convenience init(index: Int, item: T, inflate: @escaping (T, U) -> Void) {
+        convenience init(index: Int, item: T, inflate: @escaping (Int, T, U) -> Void) {
             self.init()
             self.index = index
             self.item = item
@@ -123,7 +126,7 @@ open class PageView<T, U: BaseLayout>: BaseView {
         override func viewDidLoad() {
             layout.initViews(view)
             if let item = item {
-                inflate?(item, layout)
+                inflate?(index, item, layout)
             }
         }
     }
