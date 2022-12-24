@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-extension String {
-    public var url: URL? {
+public extension String {
+    var url: URL? {
         if let url = URL(string: self) {
             return url
         }

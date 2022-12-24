@@ -8,13 +8,13 @@
 import Foundation
 import UIKit
 
-extension UIViewController {
+public extension UIViewController {
     
-    public func has(_ viewController: UIViewController) -> Bool {
+    func has(_ viewController: UIViewController) -> Bool {
         return children.contains(viewController)
     }
     
-    public func add(_ viewController: UIViewController, view: UIView? = nil, topView: UIView? = nil) {
+    func add(_ viewController: UIViewController, view: UIView? = nil, topView: UIView? = nil) {
         addChild(viewController)
         (view ?? self.view).addSubview(viewController.view)
         viewController.view.snp.makeConstraints { make in
@@ -28,12 +28,12 @@ extension UIViewController {
         viewController.didMove(toParent: self)
     }
     
-    public func replace(_ from: UIViewController, _ to: UIViewController, _ view: UIView) {
+    func replace(_ from: UIViewController, _ to: UIViewController, _ view: UIView) {
         remove(from)
         add(to, view: view)
     }
     
-    public func remove(_ viewController: UIViewController) {
+    func remove(_ viewController: UIViewController) {
         guard children.contains(viewController) else { return }
         viewController.willMove(toParent: nil)
         viewController.view.removeFromSuperview()
