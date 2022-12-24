@@ -39,4 +39,9 @@ public extension UIViewController {
         viewController.view.removeFromSuperview()
         viewController.removeFromParent()
     }
+
+    func presentFull(_ viewControllerToPresent: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
+        viewControllerToPresent.modalPresentationStyle = .fullScreen
+        self.present(viewControllerToPresent, animated: animated, completion: completion)
+    }
 }
