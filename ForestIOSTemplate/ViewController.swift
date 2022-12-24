@@ -17,6 +17,16 @@ class ViewController: UIViewController {
     }
 
 }
+class Custom<T: CustomLayout>: UIViewController {
+    let vi = T()
+}
+
+class CustomLayout: BaseLayout {
+    
+    override func initViews(_ rootView: UIView) {
+        
+    }
+}
 
 class layout_view: BaseLayout {
     
