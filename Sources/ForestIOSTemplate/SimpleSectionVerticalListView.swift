@@ -15,7 +15,7 @@ open class SimpleSectionVerticalListView: BaseView, UITableViewDataSource, UITab
     
     public var sectionCount: (() -> Int)? = nil
     public var sectionHeight: ((Int) -> CGFloat)? = nil
-    public var sectionData: ((UITableView, Int) -> UITableViewHeaderFooterView)? = nil
+    public var sectionData: ((UITableView, Int) -> UITableViewHeaderFooterView?)? = nil
     
     public var count: (() -> Int)? = nil
     public var cellHeight: ((IndexPath) -> CGFloat)? = nil
@@ -32,7 +32,7 @@ open class SimpleSectionVerticalListView: BaseView, UITableViewDataSource, UITab
         table_main.separatorStyle = .none
     }
     
-    public func setSection(count: @escaping () -> Int, height: @escaping (Int) -> CGFloat, data: @escaping (UITableView, Int) -> UITableViewHeaderFooterView) {
+    public func setSection(count: @escaping () -> Int, height: @escaping (Int) -> CGFloat, data: @escaping (UITableView, Int) -> UITableViewHeaderFooterView?) {
         self.sectionCount = count
         self.sectionHeight = height
         self.sectionData = data
