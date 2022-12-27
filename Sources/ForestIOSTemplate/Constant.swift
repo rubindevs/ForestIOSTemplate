@@ -16,7 +16,7 @@ public struct ViewImage {
     public let alignV: ViewAlignV
     public let alignH: ViewAlignH
     
-    public init(width: CGFloat, height: CGFloat, image: String, alignV: ViewAlignV, alignH: ViewAlignH) {
+    public init(width: CGFloat, height: CGFloat, image: String, alignV: ViewAlignV = .center, alignH: ViewAlignH = .center) {
         self.width = width
         self.height = height
         self.image = image
@@ -43,7 +43,7 @@ public struct ViewText {
     public let alignV: ViewAlignV
     public let alignH: ViewAlignH
     
-    public init(text: String, color: UIColor, font: UIFont, alignV: ViewAlignV, alignH: ViewAlignH) {
+    public init(text: String, color: UIColor, font: UIFont, alignV: ViewAlignV = .center, alignH: ViewAlignH = .center) {
         self.text = text
         self.color = color
         self.font = font
@@ -68,6 +68,10 @@ public struct ViewText {
     
     func setToLabel(_ label: UILabel) {
         label.setText(text, color, font)
+    }
+    
+    func setToTextField(_ textField: UITextField) {
+        textField.setText(text, color, font)
     }
     
     func inflateConstraints(_ make: ConstraintMaker, voffset: CGFloat = 0, hoffset: CGFloat = 0) {
