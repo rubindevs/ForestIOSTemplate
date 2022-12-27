@@ -84,7 +84,6 @@ open class PageView<T, U: BaseLayout>: BaseView {
             guard let currentViewController = self.viewControllers?.first else { return }
             guard let nextViewController = dataSource?.pageViewController( self, viewControllerAfter: currentViewController ) else { return }
 
-            // Has to be set like this, since else the delgates for the buttons won't work
             setViewControllers([nextViewController], direction: .forward, animated: true, completion: { completed in self.delegate?.pageViewController?(self, didFinishAnimating: true, previousViewControllers: [], transitionCompleted: completed) })
         }
         
@@ -92,7 +91,6 @@ open class PageView<T, U: BaseLayout>: BaseView {
             guard let currentViewController = self.viewControllers?.first else { return }
             guard let previousViewController = dataSource?.pageViewController( self, viewControllerBefore: currentViewController ) else { return }
 
-            // Has to be set like this, since else the delgates for the buttons won't work
             setViewControllers([previousViewController], direction: .reverse, animated: true, completion:{ completed in self.delegate?.pageViewController?(self, didFinishAnimating: true, previousViewControllers: [], transitionCompleted: completed) })
         }
         

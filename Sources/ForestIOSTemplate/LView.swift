@@ -22,8 +22,7 @@ public class LView: BaseView {
     
     public func set(text: ViewText, intervalH: CGFloat = 0, intervalV: CGFloat = 0) {
         label.snp.remakeConstraints { make in
-            text.alignV.inflateConstraints(make, voffset: intervalV)
-            text.alignH.inflateConstraints(make, hoffset: intervalH)
+            text.inflateConstraints(make, voffset: intervalV, hoffset: intervalH)
         }
         text.setToLabel(label)
     }
