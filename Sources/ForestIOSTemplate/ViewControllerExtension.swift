@@ -45,6 +45,7 @@ public extension UIViewController {
         self.present(viewControllerToPresent, animated: animated, completion: completion)
     }
     
+    @available(iOS 15.0, *)
     func presentNav(_ viewControllerToPresent: UIViewController, detents: [UISheetPresentationController.Detent] = [.large()], animated: Bool, completion: (() -> Void)? = nil) {
         let nav = UINavigationController(rootViewController: viewControllerToPresent)
         nav.isModalInPresentation = true
