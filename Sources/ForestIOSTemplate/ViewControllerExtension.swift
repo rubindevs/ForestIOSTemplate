@@ -44,4 +44,14 @@ public extension UIViewController {
         viewControllerToPresent.modalPresentationStyle = .fullScreen
         self.present(viewControllerToPresent, animated: animated, completion: completion)
     }
+    
+    func presentNav(_ viewControllerToPresent: UIViewController, detents: [UISheetPresentationController.Detent] = [.large()], animated: Bool, completion: (() -> Void)? = nil) {
+        let nav = UINavigationController(rootViewController: viewControllerToPresent)
+        nav.isModalInPresentation = true
+        nav.modalPresentationStyle = .pageSheet
+        if let sheet = nav.sheetPresentationController {
+            sheet.detents = detents
+        }
+        self.present(nav, animated: animated, completion: completion)
+    }
 }
