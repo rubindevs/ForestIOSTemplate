@@ -76,6 +76,7 @@ public class CommonTextField: BaseView, UITextFieldDelegate {
     }
     
     public func set(fieldText: ViewText, placeText: ViewText, intervalH: CGFloat, callback: @escaping (String?) -> Void) {
+        self.callback = callback
         textField.snp.updateConstraints { make in
             make.leading.equalToSuperview().offset(intervalH)
             make.trailing.equalToSuperview().offset(-intervalH)
