@@ -87,7 +87,7 @@ public class CommonTextView: BaseView, UITextViewDelegate {
         
         label_placeholder.snp.updateConstraints { make in
             make.leading.equalToSuperview().offset(intervalH)
-            make.top.equalToSuperview().offset(intervalV)
+            make.top.equalToSuperview().offset(intervalV + 4)
         }
         placeText.setToLabel(label_placeholder)
     }
