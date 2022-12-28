@@ -64,6 +64,10 @@ public extension ConstraintViewDSL {
         }
     }
     
+    func makeEasyConstraintItems(top: ConstraintItem? = nil, bottom: ConstraintItem? = nil, leading: ConstraintItem? = nil, trailing: ConstraintItem? = nil, completion: (_ width: Int, _ height: Int) -> Void, _ formats: String...) {
+        self.makeEasyConstraintItems(top: top, bottom: bottom, leading: leading, trailing: trailing, completion: completion, formats)
+    }
+    
     func makeEasyConstraints(topView: UIView? = nil, bottomView: UIView? = nil, leadingView: UIView? = nil, trailingView: UIView? = nil, completion: (_ width: Int, _ height: Int) -> Void, _ formats: String...) {
         makeEasyConstraints(topView: topView, bottomView: bottomView, leadingView: leadingView, trailingView: trailingView, completion: completion, formats)
     }
