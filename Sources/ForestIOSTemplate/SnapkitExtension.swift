@@ -9,6 +9,11 @@ import SnapKit
 
 public extension ConstraintViewDSL {
     
+    func makeEasyConstraints(topView: UIView? = nil, bottomView: UIView? = nil, leadingView: UIView? = nil, trailingView: UIView? = nil, _ formats: [String]) {
+        let fake: (Int, Int) -> Void = { width, height in }
+        self.makeEasyConstraintItems(top: topView?.snp.bottom, bottom: bottomView?.snp.top, leading: leadingView?.snp.trailing, trailing: trailingView?.snp.leading, completion: fake, formats)
+    }
+    
     func makeEasyConstraints(topView: UIView? = nil, bottomView: UIView? = nil, leadingView: UIView? = nil, trailingView: UIView? = nil, completion: (_ width: Int, _ height: Int) -> Void, _ formats: [String]) {
         self.makeEasyConstraintItems(top: topView?.snp.bottom, bottom: bottomView?.snp.top, leading: leadingView?.snp.trailing, trailing: trailingView?.snp.leading, completion: completion, formats)
     }
