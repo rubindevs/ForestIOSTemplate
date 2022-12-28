@@ -16,8 +16,7 @@ public class IView: BaseView {
     public override func initViews(parent: UIViewController?) {
         addSubview(view_image)
         view_image.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-            make.width.height.equalTo(10)
+            make.edges.equalToSuperview()
         }
     }
     
