@@ -105,6 +105,13 @@ open class BaseView: UIView {
         }, formats)
     }
     
+    public func makeEasyConstraintItems(top: ConstraintItem? = nil, bottom: ConstraintItem? = nil, leading: ConstraintItem? = nil, trailing: ConstraintItem? = nil, _ formats: [String]) {
+        self.snp.makeEasyConstraintItems(top: top, bottom: bottom, leading: leading, trailing: trailing, completion: { width, height in
+            self.fixedWidth = CGFloat(width)
+            self.fixedHeight = CGFloat(height)
+        }, formats)
+    }
+    
     public func makeConstraints(_ closure: (_ make: ConstraintMaker) -> Void) {
         self.snp.makeConstraints(closure)
     }
