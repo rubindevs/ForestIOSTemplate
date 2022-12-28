@@ -27,8 +27,16 @@ public struct ViewImage {
     func inflateConstraints(_ make: ConstraintMaker, voffset: CGFloat = 0, hoffset: CGFloat = 0) {
         alignV.inflateConstraints(make, voffset: voffset)
         alignH.inflateConstraints(make, hoffset: hoffset)
-        make.width.equalTo(width)
-        make.height.equalTo(height)
+        if width == 0 {
+            make.width.equalToSuperview()
+        } else {
+            make.width.equalTo(width)
+        }
+        if height == 0 {
+            make.height.equalToSuperview()
+        } else {
+            make.height.equalTo(height)
+        }
     }
     
     func setToImageView(_ imageView: UIImageView) {
