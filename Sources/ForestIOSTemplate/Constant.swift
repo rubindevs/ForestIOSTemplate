@@ -74,6 +74,10 @@ public struct ViewText {
         textField.setText(text, color, font)
     }
     
+    func setToTextView(_ textView: UITextView) {
+        textView.setText(text, color, font)
+    }
+    
     func inflateConstraints(_ make: ConstraintMaker, voffset: CGFloat = 0, hoffset: CGFloat = 0) {
         alignV.inflateConstraints(make, voffset: voffset)
         alignH.inflateConstraints(make, hoffset: hoffset)
