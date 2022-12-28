@@ -23,7 +23,7 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
     public var cellData: ((UICollectionView?, IndexPath) -> UICollectionViewCell)? = nil
     public var onTouch: ((IndexPath) -> Void)? = nil
     
-    convenience init(cellSize: CGSize, sectionInset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), minimumLineSpacing: CGFloat = 0, minimumInteritemSpacing: CGFloat = 0) {
+    public convenience init(cellSize: CGSize, sectionInset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), minimumLineSpacing: CGFloat = 0, minimumInteritemSpacing: CGFloat = 0) {
         self.init()
         self.cellInitSize = cellSize
         self.sectionInset = sectionInset
