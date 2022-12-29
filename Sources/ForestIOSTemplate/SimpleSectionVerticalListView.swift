@@ -17,7 +17,7 @@ open class SimpleSectionVerticalListView: BaseView, UITableViewDataSource, UITab
     public var sectionHeight: ((Int) -> CGFloat)? = nil
     public var sectionData: ((UITableView, Int) -> UITableViewHeaderFooterView?)? = nil
     
-    public var count: (() -> Int)? = nil
+    public var count: ((Int) -> Int)? = nil
     public var cellHeight: ((IndexPath) -> CGFloat)? = nil
     public var cellData: ((UITableView, IndexPath) -> UITableViewCell)? = nil
     public var onTouch: ((IndexPath) -> Void)? = nil
@@ -38,7 +38,7 @@ open class SimpleSectionVerticalListView: BaseView, UITableViewDataSource, UITab
         self.sectionData = data
     }
     
-    public func set(register: @escaping (UITableView) -> Void, count: @escaping () -> Int, cellHeight: @escaping (IndexPath) -> CGFloat, cellData: @escaping (UITableView, IndexPath) -> UITableViewCell, onTouch: @escaping (IndexPath) -> Void) {
+    public func set(register: @escaping (UITableView) -> Void, count: @escaping (Int) -> Int, cellHeight: @escaping (IndexPath) -> CGFloat, cellData: @escaping (UITableView, IndexPath) -> UITableViewCell, onTouch: @escaping (IndexPath) -> Void) {
         register(table_main)
         self.cellHeight = cellHeight
         self.cellData = cellData
@@ -59,7 +59,7 @@ open class SimpleSectionVerticalListView: BaseView, UITableViewDataSource, UITab
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return count?() ?? 0
+        return count?(section) ?? 0
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
