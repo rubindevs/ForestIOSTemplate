@@ -54,6 +54,9 @@ public class BottomNav: BaseView {
             }
             beforeView = view
         }
+        if items.count > 0 {
+            self.activateItem(item: items[0], tag: 0)
+        }
     }
     
     func activateItem(item: NavItem, tag: Int) {
