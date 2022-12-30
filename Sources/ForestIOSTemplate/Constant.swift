@@ -15,13 +15,15 @@ public struct ViewImage {
     public let image: String
     public let alignV: ViewAlignV
     public let alignH: ViewAlignH
+    public let contentMode: UIView.ContentMode
     
-    public init(width: CGFloat, height: CGFloat, image: String, alignV: ViewAlignV = .center, alignH: ViewAlignH = .center) {
+    public init(width: CGFloat, height: CGFloat, image: String, alignV: ViewAlignV = .center, alignH: ViewAlignH = .center, contentMode: UIView.ContentMode = .center) {
         self.width = width
         self.height = height
         self.image = image
         self.alignV = alignV
         self.alignH = alignH
+        self.contentMode = contentMode
     }
     
     func inflateConstraints(_ make: ConstraintMaker, voffset: CGFloat = 0, hoffset: CGFloat = 0) {
@@ -41,6 +43,7 @@ public struct ViewImage {
     
     func setToImageView(_ imageView: UIImageView) {
         imageView.setImage(image)
+        imageView.contentMode = contentMode
     }
 }
 
