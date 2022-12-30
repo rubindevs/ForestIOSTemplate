@@ -12,12 +12,14 @@ import SnapKit
 public class BottomNav: BaseView {
     
     public struct NavItem {
-        public let image: ViewImage
+        public let image_on: ViewImage
+        public let image_off: ViewImage
         public let title: ViewText
         public let callback: () -> Void
         
-        public init(image: ViewImage, title: ViewText, callback: @escaping () -> Void) {
-            self.image = image
+        public init(image_on: ViewImage, image_off: ViewImage, title: ViewText, callback: @escaping () -> Void) {
+            self.image_on = image_on
+            self.image_off = image_off
             self.title = title
             self.callback = callback
         }
@@ -27,11 +29,14 @@ public class BottomNav: BaseView {
         
     }
     
+    var items: [NavItem] = []
     public func set(items: [NavItem]) {
+        self.items = items
         subviews.forEach { $0.removeFromSuperview() }
         var beforeView: UIView? = nil
         for i in 0..<items.count {
             let view = BaseView()
+            view.tag = i
             addSubview(view)
             view.snp.makeConstraints { make in
                 if let beforeView = beforeView {
@@ -43,8 +48,23 @@ public class BottomNav: BaseView {
                 make.top.bottom.equalToSuperview()
             }
             inflateNav(view: view, item: items[i])
-            view.setOnClickListener(listener: items[i].callback)
+            view.setOnClickListener {
+                self.activateItem(item: items[i], tag: i)
+                items[i].callback()
+            }
             beforeView = view
+        }
+    }
+    
+    func activateItem(item: NavItem, tag: Int) {
+        for i in 0..<self.subviews.count {
+            subviews[i].subviews.filter { $0 is UIImageView }.map { $0 as! UIImageView }.forEach {
+                if subviews[i].tag == tag {
+                    items[i].image_on.setToImageView($0)
+                } else {
+                    items[i].image_off.setToImageView($0)
+                }
+            }
         }
     }
     
@@ -55,18 +75,18 @@ public class BottomNav: BaseView {
             view.addSubview(imageView)
             imageView.snp.makeConstraints { make in
                 make.center.equalToSuperview()
-                item.image.inflateConstraints(make)
+                item.image_off.inflateConstraints(make)
             }
-            item.image.setToImageView(imageView)
+            item.image_off.setToImageView(imageView)
         } else {
             let imageView = UIImageView()
             view.addSubview(imageView)
             imageView.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
                 make.centerY.equalToSuperview().offset(-item.title.getHeight(width: 0) / 2)
-                item.image.inflateConstraints(make)
+                item.image_off.inflateConstraints(make)
             }
-            item.image.setToImageView(imageView)
+            item.image_off.setToImageView(imageView)
             
             let label = UILabel()
             view.addSubview(label)
