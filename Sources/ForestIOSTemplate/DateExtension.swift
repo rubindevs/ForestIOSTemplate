@@ -25,6 +25,18 @@ public extension Date {
         return Calendar.current.date(byAdding: .day, value: index, to: self)
     }
     
+    func setYear(year: Int) -> Date? {
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: self)
+        components.year = year
+        return Calendar.current.date(from: components)
+    }
+    
+    func setMonth(month: Int) -> Date? {
+        var components = Calendar.current.dateComponents([.year, .month, .day], from: self)
+        components.month = month
+        return Calendar.current.date(from: components)
+    }
+    
     func setDay(day: Int) -> Date? {
         var components = Calendar.current.dateComponents([.year, .month, .day], from: self)
         components.day = day
