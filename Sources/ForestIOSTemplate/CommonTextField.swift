@@ -88,4 +88,10 @@ public class CommonTextField: BaseView, UITextFieldDelegate {
         }
         placeText.setToLabel(label_placeholder)
     }
+    
+    public func update(intervalH: CGFloat) {
+        textField.snp.updateConstraints { make in
+            make.leading.equalToSuperview().offset(intervalH)
+        }
+    }
 }
