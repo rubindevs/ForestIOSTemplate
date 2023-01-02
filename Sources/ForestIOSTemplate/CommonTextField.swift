@@ -93,5 +93,8 @@ public class CommonTextField: BaseView, UITextFieldDelegate {
         textField.snp.updateConstraints { make in
             make.leading.equalToSuperview().offset(intervalH)
         }
+        label_placeholder.snp.updateConstraints { make in
+            make.leading.equalToSuperview().offset(intervalH)
+        }
     }
 }
