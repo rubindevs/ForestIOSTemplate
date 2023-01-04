@@ -13,8 +13,8 @@ open class BaseLayout {
     required public init() {
     }
     
-    var parent: UIViewController?
-    convenience init(parent: UIViewController) {
+    public var parent: UIViewController?
+    convenience init(parent: UIViewController?) {
         self.init()
         self.parent = parent
     }
