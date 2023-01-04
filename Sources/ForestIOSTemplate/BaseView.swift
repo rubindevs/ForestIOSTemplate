@@ -95,16 +95,15 @@ open class BaseView: UIView {
         self.corner = corner
     }
     
-    
-    public func makeEasyConstraints(rootView: UIView, topView: UIView? = nil, bottomView: UIView? = nil, leadingView: UIView? = nil, trailingView: UIView? = nil, isSafe: Bool = false, _ formats: String...) {
-        rootView.addSubview(self)
-        self.snp.makeEasyConstraints(topView: topView, bottomView: bottomView, leadingView: leadingView, trailingView: trailingView, completion: { width, height in
+    public func makeEasyConstraintsFull() {
+        self.snp.makeEasyConstraints(completion: { width, height in
             self.fixedWidth = CGFloat(width)
             self.fixedHeight = CGFloat(height)
-        }, formats)
+        }, "ls0", "rs0", "ts0", "bs0")
     }
     
-    public func makeEasyConstraints(topView: UIView? = nil, bottomView: UIView? = nil, leadingView: UIView? = nil, trailingView: UIView? = nil, _ formats: String...) {
+    public func makeEasyConstraints(rootView: UIView? = nil, topView: UIView? = nil, bottomView: UIView? = nil, leadingView: UIView? = nil, trailingView: UIView? = nil, _ formats: String...) {
+        rootView?.addSubview(self)
         self.snp.makeEasyConstraints(topView: topView, bottomView: bottomView, leadingView: leadingView, trailingView: trailingView, completion: { width, height in
             self.fixedWidth = CGFloat(width)
             self.fixedHeight = CGFloat(height)
