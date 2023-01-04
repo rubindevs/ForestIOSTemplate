@@ -15,7 +15,7 @@ open class PageView<T, U: BaseLayout>: BaseView {
     let layout_page = UIView()
     var parent: UIViewController?
     
-    open override func initViews(parent: UIViewController? = nil) {
+    open override func initViews() {
         self.parent = parent
         addSubview(layout_page)
         layout_page.snp.makeConstraints { make in

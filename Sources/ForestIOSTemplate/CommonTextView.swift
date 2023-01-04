@@ -17,7 +17,7 @@ public class CommonTextView: BaseView, UITextViewDelegate {
     public var textView = UITextView()
     public var callback: ((String?) -> Void)? = nil
     
-    public override func initViews(parent: UIViewController?) {
+    public override func initViews() {
         addSubview(label_title)
         label_title.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(0)

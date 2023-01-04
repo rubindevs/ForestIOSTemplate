@@ -22,7 +22,7 @@ open class SimpleSectionVerticalListView: BaseView, UITableViewDataSource, UITab
     public var cellData: ((UITableView, IndexPath) -> UITableViewCell)? = nil
     public var onTouch: ((IndexPath) -> Void)? = nil
     
-    open override func initViews(parent: UIViewController?) {
+    open override func initViews() {
         addSubview(table_main)
         table_main.snp.makeConstraints { make in
             make.edges.equalToSuperview()

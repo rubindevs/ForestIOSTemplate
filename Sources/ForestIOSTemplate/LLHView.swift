@@ -19,7 +19,7 @@ public class LLHView: BaseView {
     public var label_left = UILabel()
     public var label_right = UILabel()
     
-    public override func initViews(parent: UIViewController?) {
+    public override func initViews() {
         addSubview(label_left)
         label_left.snp.makeConstraints { make in
             make.leading.equalToSuperview()

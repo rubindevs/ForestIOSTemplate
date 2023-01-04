@@ -49,7 +49,7 @@ public class BaseView: UIView {
         initViews()
     }
     
-    open func initViews(parent: UIViewController? = nil) {
+    open func initViews() {
         
     }
     

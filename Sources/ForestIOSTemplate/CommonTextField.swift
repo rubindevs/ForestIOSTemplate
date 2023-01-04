@@ -17,7 +17,7 @@ public class CommonTextField: BaseView, UITextFieldDelegate {
     public var textField = UITextField()
     public var callback: ((String?) -> Void)? = nil
     
-    public override func initViews(parent: UIViewController?) {
+    public override func initViews() {
         addSubview(label_title)
         label_title.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(0)

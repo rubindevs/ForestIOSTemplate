@@ -31,7 +31,7 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
         self.minimumInteritemSpacing = minimumInteritemSpacing
     }
     
-    open override func initViews(parent: UIViewController?) {
+    open override func initViews() {
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = sectionInset

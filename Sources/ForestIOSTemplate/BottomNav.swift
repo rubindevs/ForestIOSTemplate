@@ -25,7 +25,7 @@ public class BottomNav: BaseView {
         }
     }
     
-    public override func initViews(parent: UIViewController?) {
+    public override func initViews() {
         
     }
     

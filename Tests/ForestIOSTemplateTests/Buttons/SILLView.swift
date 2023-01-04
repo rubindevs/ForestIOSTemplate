@@ -16,7 +16,7 @@ public class SILLView: BaseView {
     var label_left = UIImageView()
     var view_right = LLVView()
     
-    public override func initViews(parent: UIViewController?) {
+    public override func initViews() {
         addSubview(label_left)
         label_left.snp.makeConstraints { make in
             make.leading.equalToSuperview()

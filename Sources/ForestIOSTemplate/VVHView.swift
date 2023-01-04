@@ -11,7 +11,7 @@ import UIKit
 
 public class VVHView: BaseView {
     
-    public override func initViews(parent: UIViewController?) {
+    public override func initViews() {
         
     }
 }
