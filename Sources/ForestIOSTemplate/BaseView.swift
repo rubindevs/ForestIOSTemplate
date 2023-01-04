@@ -53,7 +53,13 @@ open class BaseView: UIView {
         initViews()
     }
     
-    open func initViews(parent: UIViewController? = nil) {
+    public var parent: UIViewController?
+    convenience init(parent: UIViewController) {
+        self.init()
+        self.parent = parent
+    }
+    
+    open func initViews() {
         
     }
     
