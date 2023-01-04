@@ -54,7 +54,7 @@ open class BaseView: UIView {
     }
     
     public var parent: UIViewController?
-    convenience init(parent: UIViewController?) {
+    public convenience init(parent: UIViewController?) {
         self.init()
         self.parent = parent
     }
