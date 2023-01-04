@@ -19,7 +19,7 @@ open class BaseLayout {
         self.parent = parent
     }
     
-    open func initViews(_ rootView: UIView) {
-        
+    open func initViews(_ rootView: UIView, _ parent: UIViewController? = nil) {
+        self.parent = parent
     }
 }
