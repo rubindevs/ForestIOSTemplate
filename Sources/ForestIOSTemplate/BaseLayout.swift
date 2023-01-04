@@ -13,6 +13,12 @@ open class BaseLayout {
     required public init() {
     }
     
+    var parent: UIViewController?
+    convenience init(parent: UIViewController) {
+        self.init()
+        self.parent = parent
+    }
+    
     open func initViews(_ rootView: UIView) {
         
     }
