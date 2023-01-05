@@ -43,6 +43,14 @@ public extension Date {
         return Calendar.current.date(from: components)
     }
     
+    var minute: Int {
+        return Calendar.current.component(.minute, from: self)
+    }
+    
+    var hour: Int {
+        return Calendar.current.component(.hour, from: self)
+    }
+    
     // 1 sunday, 7 saturday
     var week: Int {
         return Calendar.current.component(.weekday, from: self)
