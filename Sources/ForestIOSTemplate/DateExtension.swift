@@ -43,6 +43,18 @@ public extension Date {
         return Calendar.current.date(from: components)
     }
     
+    func setHour(hour: Int) -> Date? {
+        var components = Calendar.current.dateComponents([.hour, .minute], from: self)
+        components.hour = hour
+        return Calendar.current.date(from: components)
+    }
+    
+    func setMinute(minute: Int) -> Date? {
+        var components = Calendar.current.dateComponents([.hour, .minute], from: self)
+        components.minute = minute
+        return Calendar.current.date(from: components)
+    }
+    
     var minute: Int {
         return Calendar.current.component(.minute, from: self)
     }
