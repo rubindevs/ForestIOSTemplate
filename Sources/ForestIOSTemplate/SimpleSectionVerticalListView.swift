@@ -46,6 +46,16 @@ open class SimpleSectionVerticalListView: BaseView, UITableViewDataSource, UITab
         self.onTouch = onTouch
     }
     
+    public func calculateHeight() -> CGFloat {
+        var totalHeights: CGFloat = 0
+        for i in 0..<(sectionCount?() ?? 0) {
+            for j in 0..<(count?(i) ?? 0) {
+                totalHeights += (cellHeight?(IndexPath(row: j, section: i)) ?? 0)
+            }
+        }
+        return totalHeights
+    }
+    
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return sectionData?(tableView, section) ?? nil
     }
