@@ -11,14 +11,14 @@ import SnapKit
 
 public class SimpleTitleSectionView: BaseTableViewHeaderFooterView {
     
-    var label_title = UILabel()
+    public var label_title = UILabel()
     
     public override func initViews() {
         addSubview(label_title)
         label_title.snp.makeEasyConstraints("ls0", "bs0")
     }
     
-    func set(title: ViewText, intervalH: CGFloat, intervalV: CGFloat) {
+    public func set(title: ViewText, intervalH: CGFloat, intervalV: CGFloat) {
         label_title.snp.remakeConstraints { make in
             title.alignH.inflateConstraints(make, hoffset: intervalH)
             title.alignV.inflateConstraints(make, voffset: intervalV)
