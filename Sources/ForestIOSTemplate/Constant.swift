@@ -18,8 +18,9 @@ public struct ViewImage {
     public let alignH: ViewAlignH
     public let contentMode: UIView.ContentMode
     public let isURL: Bool
+    public let place: String
     
-    public init(width: CGFloat, height: CGFloat, image: String, alignV: ViewAlignV = .center, alignH: ViewAlignH = .center, contentMode: UIView.ContentMode = .center, isURL: Bool = false) {
+    public init(width: CGFloat, height: CGFloat, image: String, alignV: ViewAlignV = .center, alignH: ViewAlignH = .center, contentMode: UIView.ContentMode = .center, isURL: Bool = false, place: String = "") {
         self.width = width
         self.height = height
         self.image = image
@@ -27,6 +28,7 @@ public struct ViewImage {
         self.alignH = alignH
         self.contentMode = contentMode
         self.isURL = isURL
+        self.place = place
     }
     
     func inflateConstraints(_ make: ConstraintMaker, voffset: CGFloat = 0, hoffset: CGFloat = 0) {
