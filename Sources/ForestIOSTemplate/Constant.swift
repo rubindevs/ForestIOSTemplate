@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import SnapKit
+import Kingfisher
 
 public struct ViewImage {
     public let width: CGFloat
@@ -16,14 +17,16 @@ public struct ViewImage {
     public let alignV: ViewAlignV
     public let alignH: ViewAlignH
     public let contentMode: UIView.ContentMode
+    public let isURL: Bool
     
-    public init(width: CGFloat, height: CGFloat, image: String, alignV: ViewAlignV = .center, alignH: ViewAlignH = .center, contentMode: UIView.ContentMode = .center) {
+    public init(width: CGFloat, height: CGFloat, image: String, alignV: ViewAlignV = .center, alignH: ViewAlignH = .center, contentMode: UIView.ContentMode = .center, isURL: Bool = false) {
         self.width = width
         self.height = height
         self.image = image
         self.alignV = alignV
         self.alignH = alignH
         self.contentMode = contentMode
+        self.isURL = isURL
     }
     
     func inflateConstraints(_ make: ConstraintMaker, voffset: CGFloat = 0, hoffset: CGFloat = 0) {
@@ -42,7 +45,11 @@ public struct ViewImage {
     }
     
     func setToImageView(_ imageView: UIImageView) {
-        imageView.setImage(image)
+        if isURL {
+            imageView.kf.setImage(with: image.url)
+        } else {
+            imageView.setImage(image)
+        }
         imageView.contentMode = contentMode
     }
 }
