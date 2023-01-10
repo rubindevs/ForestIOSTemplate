@@ -17,20 +17,11 @@ class ViewController: UIViewController {
     }
 
 }
-class Custom<T: CustomLayout>: UIViewController {
-    let vi = T()
-}
-
-class CustomLayout: BaseLayout {
-    
-    override func initViews(_ rootView: UIView) {
-        
-    }
-}
 
 class layout_view: BaseLayout {
     
-    override func initViews(_ rootView: UIView) {
+    override func initViews(_ rootView: UIView, _ parent: UIViewController? = nil) {
+
 //        let view = LLHView()
 //        view.makeEasyConstraints(rootView: rootView, "ls20", "ts100", "w200", "h200")
 //        view.backgroundColor = .red
@@ -41,7 +32,8 @@ class layout_view: BaseLayout {
         let view = BottomNav()
         view.makeEasyConstraints(rootView: rootView, "ls0", "bs0", "rs0", "h200")
         let item = BottomNav.NavItem(
-            image: ViewImage(width: 61, height: 61, image: "icon_user_empty", alignV: .center, alignH: .center),
+            image_on: ViewImage(width: 61, height: 61, image: "icon_user_empty", alignV: .center, alignH: .center),
+            image_off: ViewImage(width: 61, height: 61, image: "icon_user_empty", alignV: .center, alignH: .center),
             title: ViewText(text: "Hi", color: .white, font: FontFamily.Default.get(14, 400), alignV: .center, alignH: .center)) {
                 print("hello")
             }
