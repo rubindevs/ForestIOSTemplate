@@ -48,7 +48,7 @@ public struct ViewImage {
     
     func setToImageView(_ imageView: UIImageView) {
         if isURL {
-            if let place = place {
+            if let place = place, image.isEmpty {
                 imageView.kf.setImage(with: image.url, placeholder: UIImage(named: place))
             } else {
                 imageView.kf.setImage(with: image.url)
