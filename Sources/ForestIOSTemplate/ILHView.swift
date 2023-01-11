@@ -29,12 +29,12 @@ public class ILHView: BaseView {
         }
     }
     
-    public func set(image: ViewImage, label: ViewText, interval: CGFloat) {
+    public func set(image: ViewImage, label: ViewText, interval: CGFloat, intervalH: CGFloat = 0, intervalV: CGFloat = 0) {
         image_left.snp.remakeConstraints { make in
             if image.alignH == .center && label.alignH == .center {
                 image.inflateConstraints(make, hoffset: -(label.getWidth(height: 0) + interval) / 2)
             } else {
-                image.inflateConstraints(make)
+                image.inflateConstraints(make, voffset: intervalV, hoffset: intervalH)
             }
         }
         image.setToImageView(image_left)
@@ -42,14 +42,14 @@ public class ILHView: BaseView {
         label_right.snp.remakeConstraints { make in
             if image.alignH == .left && label.alignH == .left {
                 make.leading.equalTo(image_left.snp.trailing).offset(interval)
-                label.alignV.inflateConstraints(make)
+                label.alignV.inflateConstraints(make, voffset: intervalV)
             } else if image.alignH == .right && label.alignH == .right {
                 make.trailing.equalTo(image_left.snp.leading).offset(-interval)
-                label.alignV.inflateConstraints(make)
+                label.alignV.inflateConstraints(make, voffset: intervalV)
             } else if image.alignH == .center && label.alignH == .center {
                 label.inflateConstraints(make, hoffset: (image.width + interval) / 2)
             } else {
-                label.inflateConstraints(make)
+                label.inflateConstraints(make, voffset: intervalV, hoffset: intervalH)
             }
         }
         label.setToLabel(label_right)
