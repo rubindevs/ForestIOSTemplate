@@ -90,6 +90,7 @@ public class CommonTextView: BaseView, UITextViewDelegate {
             make.top.equalToSuperview().offset(intervalV + 4)
         }
         placeText.setToLabel(label_placeholder)
+        label_placeholder.isHidden = !text.text.isEmpty
     }
 }
 
