@@ -87,6 +87,7 @@ public class CommonTextField: BaseView, UITextFieldDelegate {
             make.leading.equalToSuperview().offset(intervalH)
         }
         placeText.setToLabel(label_placeholder)
+        label_placeholder.isHidden = !fieldText.text.isEmpty
     }
     
     public func update(intervalH: CGFloat) {
