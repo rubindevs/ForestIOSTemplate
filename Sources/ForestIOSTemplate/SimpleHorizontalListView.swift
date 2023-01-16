@@ -37,11 +37,11 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
     
     func initTable(layout: UICollectionViewFlowLayout?) {
         if let layout = layout {
-            tableView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+            tableView = UICollectionView(frame: self.frame, collectionViewLayout: layout)
         } else {
             let layout = UICollectionViewFlowLayout()
             layout.scrollDirection = .horizontal
-            tableView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+            tableView = UICollectionView(frame: self.frame, collectionViewLayout: layout)
         }
         if let table_main = tableView {
             addSubview(table_main)
