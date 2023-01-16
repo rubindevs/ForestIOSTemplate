@@ -17,16 +17,18 @@ public struct ViewImage {
     public let alignV: ViewAlignV
     public let alignH: ViewAlignH
     public let contentMode: UIView.ContentMode
+    public let url: URL?
     public let isURL: Bool
     public let place: String?
     
-    public init(width: CGFloat, height: CGFloat, image: String, alignV: ViewAlignV = .center, alignH: ViewAlignH = .center, contentMode: UIView.ContentMode = .center, isURL: Bool = false, place: String? = nil) {
+    public init(width: CGFloat, height: CGFloat, image: String, alignV: ViewAlignV = .center, alignH: ViewAlignH = .center, contentMode: UIView.ContentMode = .center, url: URL? = nil, isURL: Bool = false, place: String? = nil) {
         self.width = width
         self.height = height
         self.image = image
         self.alignV = alignV
         self.alignH = alignH
         self.contentMode = contentMode
+        self.url = url
         self.isURL = isURL
         self.place = place
     }
@@ -49,9 +51,9 @@ public struct ViewImage {
     func setToImageView(_ imageView: UIImageView) {
         if isURL {
             if let place = place, image.isEmpty {
-                imageView.kf.setImage(with: image.url, placeholder: UIImage(named: place))
+                imageView.kf.setImage(with: url ?? image.url, placeholder: UIImage(named: place))
             } else {
-                imageView.kf.setImage(with: image.url)
+                imageView.kf.setImage(with: url ?? image.url)
             }
         } else {
             imageView.setImage(image)
