@@ -13,27 +13,18 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
     
     public var tableView: UICollectionView?
     
-    var cellInitSize: CGSize = .zero
-    var sectionInset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-    var minimumLineSpacing: CGFloat = 0
-    var minimumInteritemSpacing: CGFloat = 0
-    
     public var count: (() -> Int)? = nil
     public var cellSize: ((IndexPath) -> CGSize)? = nil
     public var cellData: ((UICollectionView?, IndexPath) -> UICollectionViewCell)? = nil
     public var onTouch: ((IndexPath) -> Void)? = nil
     
-    public convenience init(cellSize: CGSize, sectionInset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), minimumLineSpacing: CGFloat = 0, minimumInteritemSpacing: CGFloat = 0) {
+    public convenience init(cellSize: CGSize, scrollDirection: UICollectionView.ScrollDirection, sectionInset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), minimumLineSpacing: CGFloat = 0, minimumInteritemSpacing: CGFloat = 0) {
         self.init()
-        self.cellInitSize = cellSize
-        self.sectionInset = sectionInset
-        self.minimumLineSpacing = minimumLineSpacing
-        self.minimumInteritemSpacing = minimumInteritemSpacing
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = sectionInset
-        layout.itemSize = cellInitSize
-        layout.scrollDirection = .horizontal
+        layout.itemSize = cellSize
+        layout.scrollDirection = scrollDirection
         layout.minimumLineSpacing = minimumLineSpacing
         layout.minimumInteritemSpacing = minimumInteritemSpacing // vertical
         
@@ -49,6 +40,7 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
             tableView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         } else {
             let layout = UICollectionViewFlowLayout()
+            layout.scrollDirection = .horizontal
             tableView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         }
         if let table_main = tableView {
