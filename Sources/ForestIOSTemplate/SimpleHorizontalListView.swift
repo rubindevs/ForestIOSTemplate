@@ -29,9 +29,6 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
         self.sectionInset = sectionInset
         self.minimumLineSpacing = minimumLineSpacing
         self.minimumInteritemSpacing = minimumInteritemSpacing
-    }
-    
-    open override func initViews() {
         
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = sectionInset
@@ -41,6 +38,24 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
         layout.minimumInteritemSpacing = minimumInteritemSpacing // vertical
         
         tableView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        if let table_main = tableView {
+            subviews.forEach { $0.removeFromSuperview() }
+            addSubview(table_main)
+            table_main.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+            
+            table_main.backgroundColor = .clear
+            table_main.contentInset = .zero
+            table_main.delegate = self
+            table_main.dataSource = self
+            table_main.showsHorizontalScrollIndicator = false
+        }
+    }
+    
+    open override func initViews() {
+        
+        tableView = UICollectionView(frame: .zero)
         if let table_main = tableView {
             addSubview(table_main)
             table_main.snp.makeConstraints { make in
