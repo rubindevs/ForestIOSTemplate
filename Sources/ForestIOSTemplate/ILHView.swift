@@ -12,7 +12,7 @@ import SnapKit
 
 public class ILHView: BaseView {
     
-    public var image_left = UIImageView()
+    public var image_left = IView()
     public var label_right = UILabel()
     
     public override func initViews() {
@@ -37,7 +37,7 @@ public class ILHView: BaseView {
                 image.inflateConstraints(make, voffset: intervalV, hoffset: intervalH)
             }
         }
-        image.setToImageView(image_left)
+        image_left.set(image: image)
         
         label_right.snp.remakeConstraints { make in
             if image.alignH == .left && label.alignH == .left {
