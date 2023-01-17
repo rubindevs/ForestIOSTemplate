@@ -34,6 +34,7 @@ open class PageView<T, U: BaseLayout>: BaseView {
         var pages: [UIViewController] = []
         var items: [T] = []
         var current: ((Int) -> Void)? = nil
+        var circular = true
 
         override init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : Any]? = nil) {
             super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -59,17 +60,19 @@ open class PageView<T, U: BaseLayout>: BaseView {
         }
 
         func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+            guard pages.count > 1 else { return nil }
             guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
             let previousIndex = viewControllerIndex - 1
-            guard previousIndex >= 0 else { return pages.last }
+            guard previousIndex >= 0 else { return circular ? pages.last : nil }
             guard pages.count > previousIndex else { return nil }
             return pages[previousIndex]
         }
 
         func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+            guard pages.count > 1 else { return nil }
             guard let viewControllerIndex = pages.firstIndex(of: viewController) else { return nil }
             let nextIndex = viewControllerIndex + 1
-            guard nextIndex < pages.count else { return pages.first }
+            guard nextIndex < pages.count else { return circular ? pages.first : nil }
             guard pages.count > nextIndex else { return nil }
             return pages[nextIndex]
         }
