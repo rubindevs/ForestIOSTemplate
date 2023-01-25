@@ -106,6 +106,7 @@ public class CommonTextView: BaseView, UITextViewDelegate {
             make.bottom.equalToSuperview().offset(-intervalV)
         }
         text.setToTextView(textView)
+        textView.textContainer.lineFragmentPadding = .zero
         
         label_placeholder.snp.updateConstraints { make in
             make.leading.equalToSuperview().offset(intervalH)
