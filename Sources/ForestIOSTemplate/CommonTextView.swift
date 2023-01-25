@@ -119,7 +119,7 @@ public class CommonTextView: BaseView, UITextViewDelegate {
         if text.text.contains("%d") {
             max_length = max
             format_length = text.text
-            label_length.setText(String(format: text.text, 0), text.color, text.font)
+            label_length.setText(String(format: text.text, textView.text.count), text.color, text.font)
         } else {
             print("error")
         }
