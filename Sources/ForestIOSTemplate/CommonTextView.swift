@@ -19,6 +19,7 @@ public class CommonTextView: BaseView, UITextViewDelegate {
     
     public var label_length = UILabel()
     public var format_length: String?
+    public var max_length: Int?
     
     public override func initViews() {
         addSubview(label_title)
@@ -73,6 +74,15 @@ public class CommonTextView: BaseView, UITextViewDelegate {
         callback?(textView.text)
     }
     
+    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if let max_length = max_length {
+            let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
+            let numberOfChars = newText.count
+            return numberOfChars < max_length
+        }
+        return true
+    }
+    
     public func setTitle(text: ViewText, intervalH: CGFloat, intervalV: CGFloat) {
         label_title.isHidden = false
         label_title.snp.updateConstraints { make in
@@ -107,6 +117,7 @@ public class CommonTextView: BaseView, UITextViewDelegate {
     
     public func setLength(text: ViewText, max: Int) {
         if text.text.contains("%d") {
+            max_length = max
             format_length = text.text
             label_length.setText(String(format: text.text, 0), text.color, text.font)
         } else {
