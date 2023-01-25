@@ -78,7 +78,7 @@ public class CommonTextView: BaseView, UITextViewDelegate {
         if let max_length = max_length {
             let newText = (textView.text as NSString).replacingCharacters(in: range, with: text)
             let numberOfChars = newText.count
-            return numberOfChars < max_length
+            return numberOfChars <= max_length
         }
         return true
     }
