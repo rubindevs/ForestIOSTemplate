@@ -17,6 +17,9 @@ public class CommonTextView: BaseView, UITextViewDelegate {
     public var textView = UITextView()
     public var callback: ((String?) -> Void)? = nil
     
+    public var label_length = UILabel()
+    public var format_length: String?
+    
     public override func initViews() {
         addSubview(label_title)
         label_title.snp.makeConstraints { make in
@@ -45,6 +48,12 @@ public class CommonTextView: BaseView, UITextViewDelegate {
             make.leading.equalToSuperview().offset(0)
             make.top.equalToSuperview().offset(0)
         }
+        
+        layout_tf.addSubview(label_length)
+        label_length.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+            make.top.equalTo(textView.snp.bottom).offset(6)
+        }
     }
     
     public func textViewDidBeginEditing(_ textView: UITextView) {
@@ -58,6 +67,9 @@ public class CommonTextView: BaseView, UITextViewDelegate {
     }
     
     public func textViewDidChange(_ textView: UITextView) {
+        if let format_length = format_length {
+            label_length.text = String(format: format_length, textView.text.count)
+        }
         callback?(textView.text)
     }
     
@@ -91,6 +103,15 @@ public class CommonTextView: BaseView, UITextViewDelegate {
         }
         placeText.setToLabel(label_placeholder)
         label_placeholder.isHidden = !text.text.isEmpty
+    }
+    
+    public func setLength(text: ViewText, max: Int) {
+        if text.text.contains("%d") {
+            format_length = text.text
+            label_length.setText(String(format: text.text, 0), text.color, text.font)
+        } else {
+            print("error")
+        }
     }
 }
 
