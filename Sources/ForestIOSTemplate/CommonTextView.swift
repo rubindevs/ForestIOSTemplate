@@ -50,7 +50,7 @@ public class CommonTextView: BaseView, UITextViewDelegate {
             make.top.equalToSuperview().offset(0)
         }
         
-        layout_tf.addSubview(label_length)
+        addSubview(label_length)
         label_length.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
             make.top.equalTo(layout_tf.snp.bottom).offset(6)
