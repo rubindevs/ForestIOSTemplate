@@ -57,7 +57,7 @@ public class LLHView: BaseView {
             } else if label1.alignH == .center && label2.alignH == .center {
                 label2.inflateConstraints(make, hoffset: (label1.getWidth(height: 0) + interval) / 2)
             } else {
-                label2.inflateConstraints(make, hoffset: interval)
+                label2.inflateConstraints(make, hoffset: -interval)
             }
         }
         label2.setToLabel(label_right.label)
