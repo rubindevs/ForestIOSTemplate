@@ -30,6 +30,7 @@ open class BaseView: UIView {
     var fixedWidth: CGFloat = 0
     var fixedHeight: CGFloat = 0
     public var loadingView = BaseView()
+    public var mainView = BaseView()
     
     public required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -52,9 +53,12 @@ open class BaseView: UIView {
     
     public init() {
         super.init(frame: CGRect.zero)
+        addSubview(mainView)
+        mainView.makeEasyConstraintsFull()
         addSubview(loadingView)
         loadingView.makeEasyConstraintsFull()
-        initViews()
+        loadingView.isHidden = true
+        initViews(rootView: mainView)
     }
     
     public var parent: UIViewController?
@@ -63,7 +67,7 @@ open class BaseView: UIView {
         self.parent = parent
     }
     
-    open func initViews() {
+    open func initViews(rootView: BaseView) {
         
     }
     
