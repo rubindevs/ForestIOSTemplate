@@ -25,9 +25,11 @@ open class BaseView: UIView {
             self.type = type
         }
     }
+    
     var corner = Corner(radius: 0, type: .radius)
     var fixedWidth: CGFloat = 0
     var fixedHeight: CGFloat = 0
+    var loadingView = BaseView()
     
     public required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -50,6 +52,8 @@ open class BaseView: UIView {
     
     public init() {
         super.init(frame: CGRect.zero)
+        addSubview(loadingView)
+        loadingView.makeEasyConstraintsFull()
         initViews()
     }
     
