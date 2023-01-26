@@ -9,16 +9,23 @@ import Foundation
 import UIKit
 
 open class BaseTableViewHeaderFooterView: UITableViewHeaderFooterView {
+    public var loadingView = BaseView()
+    public var mainView = BaseView()
     
     public override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        initViews()
+        addSubview(mainView)
+        mainView.makeEasyConstraintsFull()
+        addSubview(loadingView)
+        loadingView.makeEasyConstraintsFull()
+        loadingView.isHidden = true
+        initViews(rootView: mainView)
     }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
     
-    open func initViews() {
+    open func initViews(rootView: BaseView) {
     }
 }

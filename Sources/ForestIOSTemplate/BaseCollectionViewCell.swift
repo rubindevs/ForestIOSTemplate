@@ -9,16 +9,23 @@ import Foundation
 import UIKit
 
 open class BaseCollectionViewCell: UICollectionViewCell {
+    public var loadingView = BaseView()
+    public var mainView = BaseView()
 
     public override init(frame: CGRect) {
         super.init(frame: frame)
-        initViews()
+        addSubview(mainView)
+        mainView.makeEasyConstraintsFull()
+        addSubview(loadingView)
+        loadingView.makeEasyConstraintsFull()
+        loadingView.isHidden = true
+        initViews(rootView: mainView)
     }
     
     public required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    open func initViews() {
+    open func initViews(rootView: BaseView) {
     }
 }
