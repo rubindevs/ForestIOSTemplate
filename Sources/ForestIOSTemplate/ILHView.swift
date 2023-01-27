@@ -15,7 +15,7 @@ public class ILHView: BaseView {
     public var image_left = IView()
     public var label_right = UILabel()
     
-    public override func initViews(rootView: BaseView) {
+    public override func initViews(rootView: UIView) {
         rootView.addSubview(image_left)
         image_left.snp.makeConstraints { make in
             make.leading.equalToSuperview()

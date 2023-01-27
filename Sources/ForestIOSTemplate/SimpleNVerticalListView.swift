@@ -16,7 +16,7 @@ public class SimpleNVerticalListView<T: NCodable, U: BaseNTableViewCell<T>>: Bas
     public var datas: [T] = []
     public var onCell: ((T, U) -> Void)? = nil
     
-    open override func initViews(rootView: BaseView) {
+    open override func initViews(rootView: UIView) {
         rootView.addSubview(table_main)
         table_main.snp.makeConstraints { make in
             make.edges.equalToSuperview()

@@ -21,7 +21,7 @@ public class CommonTextView: BaseView, UITextViewDelegate {
     public var format_length: String?
     public var max_length: Int?
     
-    public override func initViews(rootView: BaseView) {
+    public override func initViews(rootView: UIView) {
         rootView.addSubview(label_title)
         label_title.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(0)

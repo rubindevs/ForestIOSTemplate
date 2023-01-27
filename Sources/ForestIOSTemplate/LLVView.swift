@@ -17,7 +17,7 @@ public class LLVView: BaseView {
     public var label_top = UILabel()
     public var label_bottom = UILabel()
     
-    public override func initViews(rootView: BaseView) {
+    public override func initViews(rootView: UIView) {
         rootView.addSubview(label_top)
         label_top.snp.makeConstraints { make in
             make.top.equalToSuperview()

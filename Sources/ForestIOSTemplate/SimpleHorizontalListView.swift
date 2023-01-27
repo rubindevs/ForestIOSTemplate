@@ -31,7 +31,7 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
         initTable(layout: layout)
     }
     
-    open override func initViews(rootView: BaseView) {
+    open override func initViews(rootView: UIView) {
         initTable(layout: nil)
     }
     

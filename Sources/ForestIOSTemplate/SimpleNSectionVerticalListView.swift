@@ -18,7 +18,7 @@ public class SimpleNSectionVerticalListView<T: NCodable, U: BaseTableViewHeaderF
     public var onCell: ((T, V) -> Void)? = nil
     public var sectionHeight: CGFloat = 0
     
-    open override func initViews(rootView: BaseView) {
+    open override func initViews(rootView: UIView) {
         rootView.addSubview(table_main)
         table_main.snp.makeConstraints { make in
             make.edges.equalToSuperview()

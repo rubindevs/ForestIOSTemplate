@@ -29,8 +29,8 @@ open class BaseView: UIView {
     var corner = Corner(radius: 0, type: .radius)
     var fixedWidth: CGFloat = 0
     var fixedHeight: CGFloat = 0
-    public var loadingView = BaseView()
-    public var mainView = BaseView()
+    public var loadingView = UIView()
+    public var mainView = UIView()
     
     public required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -54,9 +54,9 @@ open class BaseView: UIView {
     public init() {
         super.init(frame: CGRect.zero)
         addSubview(mainView)
-        mainView.makeEasyConstraintsFull()
+        mainView.snp.makeEasyConstraints("ls0", "rs0", "ts0", "bs0")
         addSubview(loadingView)
-        loadingView.makeEasyConstraintsFull()
+        loadingView.snp.makeEasyConstraints("ls0", "rs0", "ts0", "bs0")
         loadingView.isHidden = true
         initViews(rootView: mainView)
     }
@@ -67,7 +67,7 @@ open class BaseView: UIView {
         self.parent = parent
     }
     
-    open func initViews(rootView: BaseView) {
+    open func initViews(rootView: UIView) {
         
     }
     

@@ -16,7 +16,7 @@ public class ILLVLeftView: BaseView {
     public var image_left = UIImageView()
     public var view_right = LLVView()
     
-    public override func initViews(rootView: BaseView) {
+    public override func initViews(rootView: UIView) {
         rootView.addSubview(image_left)
         image_left.snp.makeConstraints { make in
             make.leading.equalToSuperview()
