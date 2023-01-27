@@ -25,19 +25,19 @@ public class BottomNav: BaseView {
         }
     }
     
-    public override func initViews() {
+    public override func initViews(rootView: BaseView) {
         
     }
     
     var items: [NavItem] = []
     public func set(items: [NavItem]) {
         self.items = items
-        subviews.forEach { $0.removeFromSuperview() }
+        self.mainView.subviews.forEach { $0.removeFromSuperview() }
         var beforeView: UIView? = nil
         for i in 0..<items.count {
             let view = BaseView()
             view.tag = i
-            addSubview(view)
+            self.mainView.addSubview(view)
             view.snp.makeConstraints { make in
                 if let beforeView = beforeView {
                     make.leading.equalTo(beforeView.snp.trailing)

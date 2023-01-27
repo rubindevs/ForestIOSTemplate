@@ -31,7 +31,7 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
         initTable(layout: layout)
     }
     
-    open override func initViews() {
+    open override func initViews(rootView: BaseView) {
         initTable(layout: nil)
     }
     
@@ -44,7 +44,7 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
             tableView = UICollectionView(frame: self.frame, collectionViewLayout: layout)
         }
         if let table_main = tableView {
-            addSubview(table_main)
+            mainView.addSubview(table_main)
             table_main.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }

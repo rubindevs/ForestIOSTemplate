@@ -16,14 +16,14 @@ public class ILLVLeftView: BaseView {
     public var image_left = UIImageView()
     public var view_right = LLVView()
     
-    public override func initViews() {
-        addSubview(image_left)
+    public override func initViews(rootView: BaseView) {
+        mainView.addSubview(image_left)
         image_left.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.centerY.equalToSuperview()
         }
         
-        addSubview(view_right)
+        mainView.addSubview(view_right)
         view_right.snp.makeConstraints { make in
             make.leading.equalTo(image_left.snp.trailing)
             make.centerY.equalToSuperview()

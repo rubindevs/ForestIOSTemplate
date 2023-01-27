@@ -13,8 +13,8 @@ public class LView: BaseView {
     
     public var label = UILabel()
     
-    public override func initViews() {
-        addSubview(label)
+    public override func initViews(rootView: BaseView) {
+        mainView.addSubview(label)
         label.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }

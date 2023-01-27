@@ -19,14 +19,14 @@ public class LLHView: BaseView {
     public var label_left = LView()
     public var label_right = LView()
     
-    public override func initViews() {
-        addSubview(label_left)
+    public override func initViews(rootView: BaseView) {
+        mainView.addSubview(label_left)
         label_left.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.centerY.equalToSuperview()
         }
         
-        addSubview(label_right)
+        mainView.addSubview(label_right)
         label_right.snp.makeConstraints { make in
             make.leading.equalTo(label_left.snp.trailing)
             make.centerY.equalToSuperview()

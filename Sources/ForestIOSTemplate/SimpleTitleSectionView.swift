@@ -13,8 +13,8 @@ public class SimpleTitleSectionView: BaseTableViewHeaderFooterView {
     
     public var label_title = UILabel()
     
-    public override func initViews() {
-        addSubview(label_title)
+    public override func initViews(rootView: BaseView) {
+        rootView.addSubview(label_title)
         label_title.snp.makeEasyConstraints("ls0", "bs0")
     }
     
