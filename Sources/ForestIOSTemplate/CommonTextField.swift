@@ -18,14 +18,14 @@ public class CommonTextField: BaseView, UITextFieldDelegate {
     public var callback: ((String?) -> Void)? = nil
     
     public override func initViews(rootView: BaseView) {
-        mainView.addSubview(label_title)
+        rootView.addSubview(label_title)
         label_title.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(0)
             make.top.equalToSuperview()
         }
         label_title.isHidden = true
         
-        mainView.addSubview(layout_tf)
+        rootView.addSubview(layout_tf)
         layout_tf.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.bottom.equalToSuperview()

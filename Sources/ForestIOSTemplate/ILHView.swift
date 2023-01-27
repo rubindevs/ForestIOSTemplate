@@ -16,13 +16,13 @@ public class ILHView: BaseView {
     public var label_right = UILabel()
     
     public override func initViews(rootView: BaseView) {
-        mainView.addSubview(image_left)
+        rootView.addSubview(image_left)
         image_left.snp.makeConstraints { make in
             make.leading.equalToSuperview()
             make.centerY.equalToSuperview()
         }
         
-        mainView.addSubview(label_right)
+        rootView.addSubview(label_right)
         label_right.snp.makeConstraints { make in
             make.leading.equalTo(image_left.snp.trailing)
             make.centerY.equalToSuperview()

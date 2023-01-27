@@ -18,7 +18,7 @@ open class SimpleVerticalListView: BaseView, UITableViewDataSource, UITableViewD
     public var onTouch: ((IndexPath) -> Void)? = nil
     
     open override func initViews(rootView: BaseView) {
-        mainView.addSubview(table_main)
+        rootView.addSubview(table_main)
         table_main.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

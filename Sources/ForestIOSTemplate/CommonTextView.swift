@@ -22,14 +22,14 @@ public class CommonTextView: BaseView, UITextViewDelegate {
     public var max_length: Int?
     
     public override func initViews(rootView: BaseView) {
-        mainView.addSubview(label_title)
+        rootView.addSubview(label_title)
         label_title.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(0)
             make.top.equalToSuperview()
         }
         label_title.isHidden = true
         
-        mainView.addSubview(layout_tf)
+        rootView.addSubview(layout_tf)
         layout_tf.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
             make.top.bottom.equalToSuperview()
@@ -50,7 +50,7 @@ public class CommonTextView: BaseView, UITextViewDelegate {
             make.top.equalToSuperview().offset(0)
         }
         
-        mainView.addSubview(label_length)
+        rootView.addSubview(label_length)
         label_length.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
             make.top.equalTo(layout_tf.snp.bottom).offset(6)

@@ -15,7 +15,7 @@ open class PageView<T, U: BaseLayout>: BaseView {
     let layout_page = UIView()
     
     open override func initViews(rootView: BaseView) {
-        mainView.addSubview(layout_page)
+        rootView.addSubview(layout_page)
         layout_page.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
