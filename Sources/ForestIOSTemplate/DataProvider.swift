@@ -9,7 +9,7 @@ import Foundation
 
 public class DataProvider {
     
-    static let shared = DataProvider()
+    public static let shared = DataProvider()
     private init() {}
     
     var views: [String: [BaseView]] = [:]
