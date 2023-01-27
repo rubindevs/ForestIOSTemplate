@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class BaseNTableViewCell<T: NCodable>: BaseTableViewCell {
+open class BaseNTableViewCell<T: NCodable>: BaseTableViewCell {
     
     public func set(data: T) {
     }

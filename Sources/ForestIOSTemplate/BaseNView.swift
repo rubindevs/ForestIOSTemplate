@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public class BaseNView<T: NCodable>: BaseView {
+open class BaseNView<T: NCodable>: BaseView {
     
     let id = UUID().uuidString
     
