@@ -10,6 +10,13 @@ import UIKit
 import SnapKit
 import Kingfisher
 
+public protocol NModelable {
+    static var id: String { get }
+    func height() -> CGFloat
+}
+
+public typealias NCodable = Codable & NModelable
+
 public struct ViewImage {
     public let width: CGFloat
     public let height: CGFloat
