@@ -13,37 +13,37 @@ public class BaseNView<T: NCodable>: BaseView {
     let id = UUID().uuidString
     
     var local_unregister: (String) -> Void = { uuid in }
-    func register() {
+    public func register() {
         local_unregister = DataProvider.shared.register(view: self)
     }
     
-    func unregister() {
+    public func unregister() {
         local_unregister(id)
     }
     
-    func inflate(data: T) {
+    public func inflate(data: T) {
         self.loadingView.isHidden = true
         self.onInflate?(data)
     }
     
-    func inflate(datas: [T]) {
+    public func inflate(datas: [T]) {
         self.loadingView.isHidden = true
         self.onInflateList?(datas)
     }
     
-    func setLoading(view: BaseView) {
+    public func setLoading(view: BaseView) {
         self.loadingView.isHidden = false
         self.loadingView.addSubview(view)
         view.makeEasyConstraintsFull()
     }
     
     var onInflate: ((T) -> Void)?
-    func setOnInflate(callback: @escaping (T) -> Void) {
+    public func setOnInflate(callback: @escaping (T) -> Void) {
         self.onInflate = callback
     }
     
     var onInflateList: (([T]) -> Void)?
-    func setOnInflateList(callback: @escaping ([T]) -> Void) {
+    public func setOnInflateList(callback: @escaping ([T]) -> Void) {
         self.onInflateList = callback
     }
 }

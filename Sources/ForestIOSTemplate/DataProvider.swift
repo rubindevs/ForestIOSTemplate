@@ -7,14 +7,14 @@
 
 import Foundation
 
-class DataProvider {
+public class DataProvider {
     
     static let shared = DataProvider()
     private init() {}
     
     var views: [String: [BaseView]] = [:]
     
-    func register<T: NCodable>(view: BaseNView<T>) -> (String) -> Void {
+    public func register<T: NCodable>(view: BaseNView<T>) -> (String) -> Void {
         if views[T.id] == nil {
             views[T.id] = []
         }
@@ -25,7 +25,7 @@ class DataProvider {
         return unregister
     }
     
-    func inflate<T: NCodable>(data: T?) {
+    public func inflate<T: NCodable>(data: T?) {
         if let data = data {
             views[T.id]?.forEach {
                 if let nview = $0 as? BaseNView<T> {
@@ -35,7 +35,7 @@ class DataProvider {
         }
     }
     
-    func inflate<T: NCodable>(datas: [T]) {
+    public func inflate<T: NCodable>(datas: [T]) {
         views[T.id]?.forEach {
             if let nview = $0 as? BaseNView<T> {
                 nview.inflate(datas: datas)
