@@ -26,7 +26,7 @@ public class SimpleNVerticalListView<T: NCodable, U: BaseNTableViewCell<T>>: Bas
         table_main.separatorStyle = .none
     }
     
-    override func inflate(datas: [T]) {
+    public override func inflate(datas: [T]) {
         self.datas = datas
         self.table_main.reloadData()
     }
