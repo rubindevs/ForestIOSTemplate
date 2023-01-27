@@ -32,13 +32,13 @@ open class SimpleSectionVerticalListView: BaseView, UITableViewDataSource, UITab
         table_main.separatorStyle = .none
     }
     
-    public func setSection(count: @escaping () -> Int, height: @escaping (Int) -> CGFloat, data: @escaping (UITableView, Int) -> UITableViewHeaderFooterView?) {
+    open func setSection(count: @escaping () -> Int, height: @escaping (Int) -> CGFloat, data: @escaping (UITableView, Int) -> UITableViewHeaderFooterView?) {
         self.sectionCount = count
         self.sectionHeight = height
         self.sectionData = data
     }
     
-    public func set(register: @escaping (UITableView) -> Void, count: @escaping (Int) -> Int, cellHeight: @escaping (IndexPath) -> CGFloat, cellData: @escaping (UITableView, IndexPath) -> UITableViewCell, onTouch: @escaping (IndexPath) -> Void) {
+    open func set(register: @escaping (UITableView) -> Void, count: @escaping (Int) -> Int, cellHeight: @escaping (IndexPath) -> CGFloat, cellData: @escaping (UITableView, IndexPath) -> UITableViewCell, onTouch: @escaping (IndexPath) -> Void) {
         register(table_main)
         self.cellHeight = cellHeight
         self.cellData = cellData
@@ -46,7 +46,7 @@ open class SimpleSectionVerticalListView: BaseView, UITableViewDataSource, UITab
         self.onTouch = onTouch
     }
     
-    public func calculateHeight() -> CGFloat {
+    open func calculateHeight() -> CGFloat {
         var totalHeights: CGFloat = 0
         for i in 0..<(sectionCount?() ?? 0) {
             for j in 0..<(count?(i) ?? 0) {

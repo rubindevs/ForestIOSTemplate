@@ -57,7 +57,7 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
         }
     }
     
-    public func set(register: @escaping (UICollectionView?) -> Void, count: @escaping () -> Int, cellSize: @escaping (IndexPath) -> CGSize, cellData: @escaping (UICollectionView?, IndexPath) -> UICollectionViewCell, onTouch: @escaping (IndexPath) -> Void) {
+    open func set(register: @escaping (UICollectionView?) -> Void, count: @escaping () -> Int, cellSize: @escaping (IndexPath) -> CGSize, cellData: @escaping (UICollectionView?, IndexPath) -> UICollectionViewCell, onTouch: @escaping (IndexPath) -> Void) {
         register(tableView)
         self.cellSize = cellSize
         self.cellData = cellData

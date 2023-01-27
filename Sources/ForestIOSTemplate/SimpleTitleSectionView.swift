@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-public class SimpleTitleSectionView: BaseTableViewHeaderFooterView {
+open class SimpleTitleSectionView: BaseTableViewHeaderFooterView {
     
     public var label_title = UILabel()
     
@@ -18,7 +18,7 @@ public class SimpleTitleSectionView: BaseTableViewHeaderFooterView {
         label_title.snp.makeEasyConstraints("ls0", "bs0")
     }
     
-    public func set(title: ViewText, intervalH: CGFloat, intervalV: CGFloat) {
+    open func set(title: ViewText, intervalH: CGFloat, intervalV: CGFloat) {
         label_title.snp.remakeConstraints { make in
             title.alignH.inflateConstraints(make, hoffset: intervalH)
             title.alignV.inflateConstraints(make, voffset: intervalV)

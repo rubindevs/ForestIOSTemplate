@@ -28,27 +28,27 @@ public class SimpleNSectionVerticalListView<T: NCodable, U: BaseTableViewHeaderF
         table_main.separatorStyle = .none
     }
     
-    public override func inflate(datas: [T]) {
+    open override func inflate(datas: [T]) {
         self.datas = datas
         self.table_main.reloadData()
     }
     
-    public func set(sectionHeight: CGFloat, onTouch: @escaping (T) -> Void) {
+    open func set(sectionHeight: CGFloat, onTouch: @escaping (T) -> Void) {
         self.sectionHeight = sectionHeight
         table_main.register(U.self, forHeaderFooterViewReuseIdentifier: String(describing: U.self))
         table_main.register(V.self, forCellReuseIdentifier: String(describing: V.self))
         self.onTouch = onTouch
     }
     
-    public func onSection(onSection: @escaping (U?) -> Void) {
+    open func onSection(onSection: @escaping (U?) -> Void) {
         self.onSection = onSection
     }
     
-    public func onCell(onCell: @escaping (T, V) -> Void) {
+    open func onCell(onCell: @escaping (T, V) -> Void) {
         self.onCell = onCell
     }
     
-    public func calculateHeight() -> CGFloat {
+    open func calculateHeight() -> CGFloat {
         var totalHeights: CGFloat = 0
         for data in datas {
             totalHeights += data.height()
