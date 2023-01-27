@@ -10,6 +10,6 @@ import UIKit
 
 open class BaseNTableViewCell<T: NCodable>: BaseTableViewCell {
     
-    public func set(data: T) {
+    open func set(data: T) {
     }
 }
