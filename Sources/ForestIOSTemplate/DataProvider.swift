@@ -27,8 +27,9 @@ public class DataProvider {
     
     public func startLoading<T: NCodable>(type: T.Type) {
         views[T.id]?.forEach {
-            if let nview = $0 as? BaseLoadingView {
-                nview.onShowLoading()
+            if let nview = $0 as? BaseNView<T> {
+                nview.loadingView?.isHidden = false
+                nview.loadingView?.onShowLoading()
             }
         }
     }
@@ -38,7 +39,7 @@ public class DataProvider {
             views[T.id]?.forEach {
                 if let nview = $0 as? BaseNView<T> {
                     nview.loadingView?.onStopLoading()
-                    nview.loadingView?.isHidden = false
+                    nview.loadingView?.isHidden = true
                     nview.inflate(data: data)
                 }
             }
@@ -49,7 +50,7 @@ public class DataProvider {
         views[T.id]?.forEach {
             if let nview = $0 as? BaseNView<T> {
                 nview.loadingView?.onStopLoading()
-                nview.loadingView?.isHidden = false
+                nview.loadingView?.isHidden = true
                 nview.inflate(datas: datas)
             }
         }
