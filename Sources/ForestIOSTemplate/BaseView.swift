@@ -29,7 +29,6 @@ open class BaseView: UIView {
     var corner = Corner(radius: 0, type: .radius)
     var fixedWidth: CGFloat = 0
     var fixedHeight: CGFloat = 0
-    public var loadingView = UIView()
     public var mainView = UIView()
     
     public required init(coder aDecoder: NSCoder) {
