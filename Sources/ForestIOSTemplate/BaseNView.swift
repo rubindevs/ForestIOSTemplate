@@ -8,14 +8,14 @@
 import Foundation
 import UIKit
 
-open class BaseNView<T: NCodable>: BaseLoadingView {
+open class BaseNView<T: NCodable>: BaseView {
     
     let id = UUID().uuidString
     
     var local_unregister: (String) -> Void = { uuid in }
     open func register() {
         local_unregister = DataProvider.shared.register(view: self)
-        self.onShowLoading()
+        self.loadingView?.onShowLoading()
     }
     
     open func unregister() {
@@ -23,12 +23,12 @@ open class BaseNView<T: NCodable>: BaseLoadingView {
     }
     
     open func inflate(data: T) {
-        self.onStopLoading()
+        self.loadingView?.onStopLoading()
         self.onInflate?(data)
     }
     
     open func inflate(datas: [T]) {
-        self.onStopLoading()
+        self.loadingView?.onStopLoading()
         self.onInflateList?(datas)
     }
     
@@ -40,5 +40,13 @@ open class BaseNView<T: NCodable>: BaseLoadingView {
     var onInflateList: (([T]) -> Void)?
     open func setOnInflateList(callback: @escaping ([T]) -> Void) {
         self.onInflateList = callback
+    }
+    
+    public var loadingView: BaseLoadingView?
+    open func setLoading(view: BaseLoadingView) {
+        self.loadingView?.removeFromSuperview()
+        self.loadingView = view
+        self.addSubview(view)
+        view.makeEasyConstraintsFull()
     }
 }
