@@ -60,9 +60,9 @@ public class BottomNav: BaseView {
     }
     
     func activateItem(item: NavItem, tag: Int) {
-        for i in 0..<self.subviews.count {
-            subviews[i].subviews.filter { $0 is UIImageView }.map { $0 as! UIImageView }.forEach {
-                if subviews[i].tag == tag {
+        for i in 0..<self.mainView.subviews.count {
+            self.mainView.subviews[i].subviews.filter { $0 is UIImageView }.map { $0 as! UIImageView }.forEach {
+                if self.mainView.subviews[i].tag == tag {
                     items[i].image_on.setToImageView($0)
                 } else {
                     items[i].image_off.setToImageView($0)
