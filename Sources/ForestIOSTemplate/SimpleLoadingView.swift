@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 import SnapKit
 
-class SimpleLoadingView: BaseLoadingView {
+open class SimpleLoadingView: BaseLoadingView {
     
     let view_loading = UIActivityIndicatorView()
     
-    override func initViews(rootView: UIView) {
+    open override func initViews(rootView: UIView) {
         rootView.addSubview(view_loading)
         view_loading.snp.makeEasyConstraints("xs0", "ys0")
         if #available(iOS 13.0, *) {
@@ -23,11 +23,11 @@ class SimpleLoadingView: BaseLoadingView {
         }
     }
     
-    override func onShowLoading() {
+    open override func onShowLoading() {
         view_loading.startAnimating()
     }
     
-    override func onStopLoading() {
+    open override func onStopLoading() {
         view_loading.stopAnimating()
     }
 }
