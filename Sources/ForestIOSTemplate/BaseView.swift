@@ -54,9 +54,6 @@ open class BaseView: UIView {
         super.init(frame: CGRect.zero)
         addSubview(mainView)
         mainView.snp.makeEasyConstraints("ls0", "rs0", "ts0", "bs0")
-        addSubview(loadingView)
-        loadingView.snp.makeEasyConstraints("ls0", "rs0", "ts0", "bs0")
-        loadingView.isHidden = true
         initViews(rootView: mainView)
     }
     
