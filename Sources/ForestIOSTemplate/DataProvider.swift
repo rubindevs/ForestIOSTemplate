@@ -25,6 +25,14 @@ public class DataProvider {
         return unregister
     }
     
+    public func startLoading<T: NCodable>(type: T.Type) {
+        views[T.id]?.forEach {
+            if let nview = $0 as? BaseLoadingView {
+                nview.onShowLoading()
+            }
+        }
+    }
+    
     public func inflate<T: NCodable>(data: T?) {
         if let data = data {
             views[T.id]?.forEach {

@@ -24,11 +24,13 @@ open class BaseNView<T: NCodable>: BaseView {
     
     open func inflate(data: T) {
         self.loadingView?.onStopLoading()
+        self.loadingView?.isHidden = true
         self.onInflate?(data)
     }
     
     open func inflate(datas: [T]) {
         self.loadingView?.onStopLoading()
+        self.loadingView?.isHidden = true
         self.onInflateList?(datas)
     }
     
