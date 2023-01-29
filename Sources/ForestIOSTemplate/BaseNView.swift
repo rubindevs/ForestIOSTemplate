@@ -40,6 +40,22 @@ open class BaseNView<T: NCodable>: BaseView {
         self.onInflateList = callback
     }
     
+    open func onShowLoading() {
+        Task {
+            await mainView.animateAlpha(show: false)
+        }
+        loadingView?.isHidden = false
+        loadingView?.onShowLoading()
+    }
+    
+    open func onStopLoading() {
+        Task {
+            await mainView.animateAlpha(show: true)
+        }
+        loadingView?.onStopLoading()
+        loadingView?.isHidden = true
+    }
+    
     public var loadingView: BaseLoadingView?
     open func setLoading(view: BaseLoadingView) {
         self.loadingView?.removeFromSuperview()

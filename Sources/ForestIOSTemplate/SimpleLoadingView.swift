@@ -16,11 +16,7 @@ open class SimpleLoadingView: BaseLoadingView {
     open override func initViews(rootView: UIView) {
         rootView.addSubview(view_loading)
         view_loading.snp.makeEasyConstraints("xs0", "ys0")
-        if #available(iOS 13.0, *) {
-            view_loading.style = UIActivityIndicatorView.Style.medium
-        } else {
-            view_loading.style = .white
-        }
+        view_loading.style = UIActivityIndicatorView.Style.medium
     }
     
     open override func onShowLoading() {

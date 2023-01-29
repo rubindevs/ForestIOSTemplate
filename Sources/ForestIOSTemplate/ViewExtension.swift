@@ -24,4 +24,30 @@ public extension UIView {
                 
         self.layer.insertSublayer(gradientLayer, at:0)
     }
+    
+    func animateAlpha(show: Bool, duration: CGFloat = 0.5) async -> Bool {
+        let start = show ? 0 : 1.0
+        let end = show ? 1.0 : 0
+        self.alpha = start
+        self.isHidden = false
+        return await withCheckedContinuation { continuation in
+            UIView.animate(withDuration: duration, animations: {
+                self.alpha = end
+            }, completion: { finished in
+                self.isHidden = show ? false : true
+                continuation.resume(returning: true)
+            })
+        }
+    }
+    
+    func animateTransition(start: CGPoint, end: CGPoint, duration: CGFloat = 0.5) async -> Bool {
+        self.transform = CGAffineTransform(translationX: start.x, y: start.y)
+        return await withCheckedContinuation { continuation in
+            UIView.animate(withDuration: duration, animations: {
+                self.transform = CGAffineTransform(translationX: end.x, y: end.y)
+            }, completion: { finished in
+                continuation.resume(returning: true)
+            })
+        }
+    }
 }
