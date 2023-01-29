@@ -26,10 +26,16 @@ open class BaseView: UIView {
         }
     }
     
+    public struct Gradient {
+        let colors: [UIColor]
+        let locations: [NSNumber]
+    }
+    
     var corner = Corner(radius: 0, type: .radius)
     var fixedWidth: CGFloat = 0
     var fixedHeight: CGFloat = 0
     public var mainView = UIView()
+    public var gradient: Gradient? = nil
     
     public required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
@@ -48,6 +54,9 @@ open class BaseView: UIView {
         }
         fixedWidth = self.frame.width
         fixedHeight = self.frame.height
+        if let gradient = gradient {
+            setGradientBackground(colors: gradient.colors, locations: gradient.locations, frame: self.frame)
+        }
     }
     
     public init() {
@@ -131,5 +140,9 @@ open class BaseView: UIView {
     
     public var height: CGFloat {
         return fixedHeight
+    }
+    
+    public func set(gradent: Gradient) {
+        self.gradient = gradent
     }
 }
