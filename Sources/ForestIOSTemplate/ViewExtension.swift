@@ -25,7 +25,7 @@ public extension UIView {
         self.layer.insertSublayer(gradientLayer, at:0)
     }
     
-    func animateAlpha(show: Bool, duration: CGFloat = 0.5) async -> Bool {
+    func animateAlpha(show: Bool, duration: CGFloat = 0.3) async -> Bool {
         let start = show ? 0 : 1.0
         let end = show ? 1.0 : 0
         self.alpha = start
@@ -40,7 +40,7 @@ public extension UIView {
         }
     }
     
-    func animateTransition(start: CGPoint, end: CGPoint, duration: CGFloat = 0.5) async -> Bool {
+    func animateTransition(start: CGPoint, end: CGPoint, duration: CGFloat = 0.3) async -> Bool {
         self.transform = CGAffineTransform(translationX: start.x, y: start.y)
         return await withCheckedContinuation { continuation in
             UIView.animate(withDuration: duration, animations: {
