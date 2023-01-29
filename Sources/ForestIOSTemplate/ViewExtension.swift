@@ -11,7 +11,6 @@ import UIKit
 public extension UIView {
     
     func setGradientBackground(colors: [UIColor]?, locations: [NSNumber]?, frame: CGRect?, startPoint: CGPoint? = nil, endPoint: CGPoint? = nil) {
-        self.layer.sublayers?.forEach { $0.removeFromSuperlayer() }
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = colors?.map { $0.cgColor }
         gradientLayer.locations = locations
