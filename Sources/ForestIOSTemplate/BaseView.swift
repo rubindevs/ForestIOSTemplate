@@ -142,7 +142,7 @@ open class BaseView: UIView {
         return fixedHeight
     }
     
-    public func set(colors: [UIColor], locations: [NSNumber]) {
+    public func setGradient(colors: [UIColor], locations: [NSNumber]) {
         self.gradient = Gradient(colors: colors, locations: locations)
     }
 }
