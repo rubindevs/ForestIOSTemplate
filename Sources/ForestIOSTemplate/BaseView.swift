@@ -31,6 +31,7 @@ open class BaseView: UIView {
         public let locations: [NSNumber]
         public let startPoint: CGPoint?
         public let endPoint: CGPoint?
+        public var isDraw: Bool
     }
     
     var corner = Corner(radius: 0, type: .radius)
@@ -56,8 +57,9 @@ open class BaseView: UIView {
         }
         fixedWidth = self.frame.width
         fixedHeight = self.frame.height
-        if let gradient = gradient {
+        if let gradient = gradient, !gradient.isDraw {
             setGradientBackground(colors: gradient.colors, locations: gradient.locations, frame: self.frame, startPoint: gradient.startPoint, endPoint: gradient.endPoint)
+            self.gradient?.isDraw = true
         }
     }
     
@@ -145,6 +147,6 @@ open class BaseView: UIView {
     }
     
     public func setGradient(colors: [UIColor], locations: [NSNumber], startPoint: CGPoint? = nil, endPoint: CGPoint? = nil) {
-        self.gradient = Gradient(colors: colors, locations: locations, startPoint: startPoint, endPoint: endPoint)
+        self.gradient = Gradient(colors: colors, locations: locations, startPoint: startPoint, endPoint: endPoint, isDraw: false)
     }
 }
