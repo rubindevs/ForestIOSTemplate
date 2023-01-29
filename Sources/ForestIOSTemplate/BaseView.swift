@@ -27,8 +27,8 @@ open class BaseView: UIView {
     }
     
     public struct Gradient {
-        let colors: [UIColor]
-        let locations: [NSNumber]
+        public let colors: [UIColor]
+        public let locations: [NSNumber]
     }
     
     var corner = Corner(radius: 0, type: .radius)
