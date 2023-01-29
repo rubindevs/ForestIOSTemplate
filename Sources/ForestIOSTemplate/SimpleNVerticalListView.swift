@@ -29,7 +29,7 @@ public class SimpleNVerticalListView<T: NCodable, U: BaseNTableViewCell<T>>: Bas
         table_main.separatorStyle = .none
     }
     
-    func setOnRefresh(onRefresh: @escaping () -> Void) {
+    open func setOnRefresh(onRefresh: @escaping () -> Void) {
         self.onRefresh = onRefresh
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "Refresh")
