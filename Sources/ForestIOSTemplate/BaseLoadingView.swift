@@ -10,10 +10,10 @@ import UIKit
 
 open class BaseLoadingView: BaseView {
     
-    open func onShowLoading() {
+    open func onShowLoading() async {
     }
     
-    open func onStopLoading() {
+    open func onStopLoading() async {
     }
     
 }

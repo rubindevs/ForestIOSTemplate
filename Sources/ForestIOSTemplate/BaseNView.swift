@@ -15,7 +15,6 @@ open class BaseNView<T: NCodable>: BaseView {
     var local_unregister: (String) -> Void = { uuid in }
     open func register() {
         local_unregister = DataProvider.shared.register(view: self)
-        self.loadingView?.onShowLoading()
     }
     
     open func unregister() {
@@ -42,18 +41,16 @@ open class BaseNView<T: NCodable>: BaseView {
     
     open func onShowLoading() {
         Task {
-            await mainView.animateAlpha(show: false)
+            let _ = await loadingView?.animateAlpha(show: true)
+            await loadingView?.onShowLoading()
         }
-        loadingView?.isHidden = false
-        loadingView?.onShowLoading()
     }
     
     open func onStopLoading() {
         Task {
-            await mainView.animateAlpha(show: true)
+            await loadingView?.onStopLoading()
+            let _ = await loadingView?.animateAlpha(show: false)
         }
-        loadingView?.onStopLoading()
-        loadingView?.isHidden = true
     }
     
     public var loadingView: BaseLoadingView?
