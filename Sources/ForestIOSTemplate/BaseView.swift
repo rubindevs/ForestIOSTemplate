@@ -59,7 +59,7 @@ open class BaseView: UIView {
         fixedHeight = self.frame.height
         if let gradient = gradient, !gradient.isDraw {
             self.gradient?.isDraw = true
-            setGradientBackground(colors: gradient.colors, locations: gradient.locations, frame: self.frame, startPoint: gradient.startPoint, endPoint: gradient.endPoint)
+            setGradientBackground(colors: gradient.colors, locations: gradient.locations, frame: CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height), startPoint: gradient.startPoint, endPoint: gradient.endPoint)
         }
     }
     
