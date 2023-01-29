@@ -36,6 +36,7 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
     }
     
     func initTable(layout: UICollectionViewFlowLayout?) {
+        tableView?.removeFromSuperview()
         if let layout = layout {
             tableView = UICollectionView(frame: self.frame, collectionViewLayout: layout)
         } else {
