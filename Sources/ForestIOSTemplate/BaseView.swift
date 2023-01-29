@@ -29,6 +29,8 @@ open class BaseView: UIView {
     public struct Gradient {
         public let colors: [UIColor]
         public let locations: [NSNumber]
+        public let startPoint: CGPoint?
+        public let endPoint: CGPoint?
     }
     
     var corner = Corner(radius: 0, type: .radius)
@@ -55,7 +57,7 @@ open class BaseView: UIView {
         fixedWidth = self.frame.width
         fixedHeight = self.frame.height
         if let gradient = gradient {
-            setGradientBackground(colors: gradient.colors, locations: gradient.locations, frame: self.frame)
+            setGradientBackground(colors: gradient.colors, locations: gradient.locations, frame: self.frame, startPoint: gradient.startPoint, endPoint: gradient.endPoint)
         }
     }
     
@@ -142,7 +144,7 @@ open class BaseView: UIView {
         return fixedHeight
     }
     
-    public func setGradient(colors: [UIColor], locations: [NSNumber]) {
-        self.gradient = Gradient(colors: colors, locations: locations)
+    public func setGradient(colors: [UIColor], locations: [NSNumber], startPoint: CGPoint? = nil, endPoint: CGPoint? = nil) {
+        self.gradient = Gradient(colors: colors, locations: locations, startPoint: startPoint, endPoint: endPoint)
     }
 }
