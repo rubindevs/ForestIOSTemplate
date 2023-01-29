@@ -27,6 +27,21 @@ open class SimpleVerticalListView: BaseView, UITableViewDataSource, UITableViewD
         table_main.separatorStyle = .none
     }
     
+    public var refreshControl: UIRefreshControl? = nil
+    public var onRefresh: (() -> Void)? = nil
+    open func setOnRefresh(onRefresh: @escaping () -> Void) {
+        self.onRefresh = onRefresh
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Refresh")
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        table_main.refreshControl = refreshControl
+    }
+    
+    @objc func refresh(_ sender: UIRefreshControl) {
+        self.refreshControl?.endRefreshing()
+        self.onRefresh?()
+    }
+    
     open func set(register: @escaping (UITableView) -> Void, count: @escaping () -> Int, cellHeight: @escaping (IndexPath) -> CGFloat, cellData: @escaping (UITableView, IndexPath) -> UITableViewCell, onTouch: @escaping (IndexPath) -> Void) {
         register(table_main)
         self.cellHeight = cellHeight

@@ -32,6 +32,21 @@ open class SimpleSectionVerticalListView: BaseView, UITableViewDataSource, UITab
         table_main.separatorStyle = .none
     }
     
+    public var refreshControl: UIRefreshControl? = nil
+    public var onRefresh: (() -> Void)? = nil
+    open func setOnRefresh(onRefresh: @escaping () -> Void) {
+        self.onRefresh = onRefresh
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Refresh")
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        table_main.refreshControl = refreshControl
+    }
+    
+    @objc func refresh(_ sender: UIRefreshControl) {
+        self.refreshControl?.endRefreshing()
+        self.onRefresh?()
+    }
+    
     open func setSection(count: @escaping () -> Int, height: @escaping (Int) -> CGFloat, data: @escaping (UITableView, Int) -> UITableViewHeaderFooterView?) {
         self.sectionCount = count
         self.sectionHeight = height

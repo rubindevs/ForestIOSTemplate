@@ -16,9 +16,6 @@ public class SimpleNVerticalListView<T: NCodable, U: BaseNTableViewCell<T>>: Bas
     public var datas: [T] = []
     public var onCell: ((T, U) -> Void)? = nil
     
-    public var refreshControl: UIRefreshControl? = nil
-    public var onRefresh: (() -> Void)? = nil
-    
     open override func initViews(rootView: UIView) {
         rootView.addSubview(table_main)
         table_main.snp.makeConstraints { make in
@@ -29,6 +26,8 @@ public class SimpleNVerticalListView<T: NCodable, U: BaseNTableViewCell<T>>: Bas
         table_main.separatorStyle = .none
     }
     
+    public var refreshControl: UIRefreshControl? = nil
+    public var onRefresh: (() -> Void)? = nil
     open func setOnRefresh(onRefresh: @escaping () -> Void) {
         self.onRefresh = onRefresh
         refreshControl = UIRefreshControl()

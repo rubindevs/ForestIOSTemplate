@@ -31,6 +31,21 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
         initTable(layout: layout)
     }
     
+    public var refreshControl: UIRefreshControl? = nil
+    public var onRefresh: (() -> Void)? = nil
+    open func setOnRefresh(onRefresh: @escaping () -> Void) {
+        self.onRefresh = onRefresh
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Refresh")
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        tableView?.refreshControl = refreshControl
+    }
+    
+    @objc func refresh(_ sender: UIRefreshControl) {
+        self.refreshControl?.endRefreshing()
+        self.onRefresh?()
+    }
+    
     open override func initViews(rootView: UIView) {
         initTable(layout: nil)
     }
