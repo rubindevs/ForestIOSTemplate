@@ -18,6 +18,9 @@ public class SimpleNSectionVerticalListView<T: NCodable, U: BaseTableViewHeaderF
     public var onCell: ((T, V) -> Void)? = nil
     public var sectionHeight: CGFloat = 0
     
+    public var refreshControl: UIRefreshControl? = nil
+    public var onRefresh: (() -> Void)? = nil
+    
     open override func initViews(rootView: UIView) {
         rootView.addSubview(table_main)
         table_main.snp.makeConstraints { make in
@@ -26,6 +29,19 @@ public class SimpleNSectionVerticalListView<T: NCodable, U: BaseTableViewHeaderF
         table_main.delegate = self
         table_main.dataSource = self
         table_main.separatorStyle = .none
+    }
+    
+    open func setOnRefresh(onRefresh: @escaping () -> Void) {
+        self.onRefresh = onRefresh
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Refresh")
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        table_main.refreshControl = refreshControl
+    }
+    
+    @objc func refresh(_ sender: UIRefreshControl) {
+        self.refreshControl?.endRefreshing()
+        self.onRefresh?()
     }
     
     open override func inflate(datas: [T]) {
