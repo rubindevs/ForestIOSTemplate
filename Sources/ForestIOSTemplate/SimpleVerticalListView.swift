@@ -89,7 +89,7 @@ open class SimpleVerticalListView: BaseView, UITableViewDataSource, UITableViewD
     }
     
     var isEmpty = false
-    func setEmptyView(view: BaseView) {
+    public func setEmptyView(view: BaseView) {
         self.emptyView.subviews.forEach { $0.removeFromSuperview() }
         self.emptyView.addSubview(view)
         view.makeEasyConstraintsFull()
