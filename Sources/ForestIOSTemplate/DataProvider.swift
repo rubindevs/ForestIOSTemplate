@@ -28,7 +28,9 @@ public class DataProvider {
     public func startLoading<T: NCodable>(type: T.Type) {
         views[T.id]?.forEach {
             if let nview = $0 as? BaseNView<T> {
-                nview.onShowLoading()
+                Task {
+                    await nview.onShowLoading()
+                }
             }
         }
     }
@@ -37,8 +39,12 @@ public class DataProvider {
         if let data = data {
             views[T.id]?.forEach {
                 if let nview = $0 as? BaseNView<T> {
-                    nview.onStopLoading()
-                    nview.inflate(data: data)
+                    Task {
+                        await nview.onStopLoading()
+                    }
+                    DispatchQueue.main.async {
+                        nview.inflate(data: data)
+                    }
                 }
             }
         }
@@ -48,8 +54,12 @@ public class DataProvider {
         if let datas = datas {
             views[T.id]?.forEach {
                 if let nview = $0 as? BaseNView<T> {
-                    nview.onStopLoading()
-                    nview.inflate(datas: datas)
+                    Task { 
+                        await nview.onStopLoading()
+                    }
+                    DispatchQueue.main.async {
+                        nview.inflate(datas: datas)
+                    }
                 }
             }
         }

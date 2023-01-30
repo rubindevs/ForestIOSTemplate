@@ -39,18 +39,14 @@ open class BaseNView<T: NCodable>: BaseView {
         self.onInflateList = callback
     }
     
-    open func onShowLoading() {
-        Task {
-            let _ = await loadingView?.animateAlpha(show: true)
-            await loadingView?.onShowLoading()
-        }
+    open func onShowLoading() async {
+        let _ = await loadingView?.animateAlpha(show: true)
+        await loadingView?.onShowLoading()
     }
     
-    open func onStopLoading() {
-        Task {
-            await loadingView?.onStopLoading()
-            let _ = await loadingView?.animateAlpha(show: false)
-        }
+    open func onStopLoading() async {
+        await loadingView?.onStopLoading()
+        let _ = await loadingView?.animateAlpha(show: false)
     }
     
     public var loadingView: BaseLoadingView?
