@@ -28,6 +28,9 @@ public extension UIView {
     func animateAlpha(show: Bool, duration: CGFloat = 0.3) async -> Bool {
         let start = show ? 0 : 1.0
         let end = show ? 1.0 : 0
+        if self.alpha == end {
+            return true
+        }
         self.alpha = start
         self.isHidden = false
         return await withCheckedContinuation { continuation in
