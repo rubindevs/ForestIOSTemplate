@@ -29,6 +29,7 @@ public extension UIView {
         let start = show ? 0 : 1.0
         let end = show ? 1.0 : 0
         if self.alpha == end {
+            self.isHidden = show ? false : true
             return true
         }
         self.alpha = start

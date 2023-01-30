@@ -59,5 +59,6 @@ open class BaseNView<T: NCodable>: BaseView {
         self.loadingView = view
         self.addSubview(view)
         view.makeEasyConstraintsFull()
+        view.alpha = 0
     }
 }
