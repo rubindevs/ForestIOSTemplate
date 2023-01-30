@@ -38,6 +38,7 @@ open class BaseView: UIView {
     var fixedWidth: CGFloat = 0
     var fixedHeight: CGFloat = 0
     public var mainView = UIView()
+    public var emptyView = UIView()
     public var gradient: Gradient? = nil
     
     public required init(coder aDecoder: NSCoder) {
@@ -67,6 +68,9 @@ open class BaseView: UIView {
         super.init(frame: CGRect.zero)
         addSubview(mainView)
         mainView.snp.makeEasyConstraints("ls0", "rs0", "ts0", "bs0")
+        addSubview(emptyView)
+        emptyView.snp.makeEasyConstraints("ls0", "rs0", "ts0", "bs0")
+        emptyView.isHidden = true
         initViews(rootView: mainView)
     }
     

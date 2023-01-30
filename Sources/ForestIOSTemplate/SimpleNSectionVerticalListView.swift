@@ -86,6 +86,7 @@ public class SimpleNSectionVerticalListView<T: NCodable, U: BaseTableViewHeaderF
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        self.emptyView.isHidden = !(datas.count == 0 && isEmpty)
         return datas.count
     }
     
@@ -105,5 +106,13 @@ public class SimpleNSectionVerticalListView<T: NCodable, U: BaseTableViewHeaderF
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         onTouch?(datas[indexPath.row])
+    }
+    
+    var isEmpty = false
+    func setEmptyView(view: BaseView) {
+        self.emptyView.subviews.forEach { $0.removeFromSuperview() }
+        self.emptyView.addSubview(view)
+        view.makeEasyConstraintsFull()
+        isEmpty = true
     }
 }

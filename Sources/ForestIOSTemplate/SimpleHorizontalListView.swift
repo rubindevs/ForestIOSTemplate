@@ -86,7 +86,9 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return count?() ?? 0
+        let count = count?() ?? 0
+        self.emptyView.isHidden = !(count == 0 && isEmpty)
+        return count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -95,6 +97,14 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         onTouch?(indexPath)
+    }
+    
+    var isEmpty = false
+    func setEmptyView(view: BaseView) {
+        self.emptyView.subviews.forEach { $0.removeFromSuperview() }
+        self.emptyView.addSubview(view)
+        view.makeEasyConstraintsFull()
+        isEmpty = true
     }
 }
 
