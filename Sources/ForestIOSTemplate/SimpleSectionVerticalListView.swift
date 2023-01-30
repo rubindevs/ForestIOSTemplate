@@ -84,7 +84,9 @@ open class SimpleSectionVerticalListView: BaseView, UITableViewDataSource, UITab
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return count?(section) ?? 0
+        let count = count?(section) ?? 0
+        self.emptyView.isHidden = !(count == 0 && isEmpty)
+        return count
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -97,5 +99,13 @@ open class SimpleSectionVerticalListView: BaseView, UITableViewDataSource, UITab
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         onTouch?(indexPath)
+    }
+    
+    var isEmpty = false
+    public func setEmptyView(view: BaseView) {
+        self.emptyView.subviews.forEach { $0.removeFromSuperview() }
+        self.emptyView.addSubview(view)
+        view.makeEasyConstraintsFull()
+        isEmpty = true
     }
 }

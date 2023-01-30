@@ -26,6 +26,15 @@ open class PageView<T, U: BaseLayout>: BaseView {
             parent.add(controller_page, view: layout_page, topView: nil)
         }
         controller_page.set(items: items, inflate: inflate, current: current)
+        self.emptyView.isHidden = !(items.count == 0 && isEmpty)
+    }
+    
+    var isEmpty = false
+    public func setEmptyView(view: BaseView) {
+        self.emptyView.subviews.forEach { $0.removeFromSuperview() }
+        self.emptyView.addSubview(view)
+        view.makeEasyConstraintsFull()
+        isEmpty = true
     }
     
     
