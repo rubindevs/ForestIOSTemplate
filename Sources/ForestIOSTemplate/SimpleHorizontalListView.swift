@@ -17,6 +17,8 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
     public var cellSize: ((IndexPath) -> CGSize)? = nil
     public var cellData: ((UICollectionView?, IndexPath) -> UICollectionViewCell)? = nil
     public var onTouch: ((IndexPath) -> Void)? = nil
+    public var minimumLineSpacing: CGFloat? = nil
+    public var minimumInteritemSpacing: CGFloat? = nil
     
     public convenience init(cellSize: CGSize, scrollDirection: UICollectionView.ScrollDirection, sectionInset: UIEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), minimumLineSpacing: CGFloat = 0, minimumInteritemSpacing: CGFloat = 0) {
         self.init()
@@ -28,6 +30,8 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
         layout.minimumLineSpacing = minimumLineSpacing
         layout.minimumInteritemSpacing = minimumInteritemSpacing // vertical
         
+        self.minimumLineSpacing = minimumLineSpacing
+        self.minimumInteritemSpacing = minimumInteritemSpacing
         initTable(layout: layout)
     }
     
@@ -97,6 +101,13 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
     
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         onTouch?(indexPath)
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return self.minimumInteritemSpacing ?? 0.0
+    }
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return self.minimumLineSpacing ?? 0.0
     }
     
     var isEmpty = false
