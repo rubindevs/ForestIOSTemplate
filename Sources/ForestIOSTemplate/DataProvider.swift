@@ -44,11 +44,13 @@ public class DataProvider {
         }
     }
     
-    public func inflate<T: NCodable>(datas: [T]) {
-        views[T.id]?.forEach {
-            if let nview = $0 as? BaseNView<T> {
-                nview.onStopLoading()
-                nview.inflate(datas: datas)
+    public func inflate<T: NCodable>(datas: [T]?) {
+        if let datas = datas {
+            views[T.id]?.forEach {
+                if let nview = $0 as? BaseNView<T> {
+                    nview.onStopLoading()
+                    nview.inflate(datas: datas)
+                }
             }
         }
     }
