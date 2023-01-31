@@ -60,7 +60,7 @@ public class SimpleNVerticalListView<T: NCodable, U: BaseNTableViewCell<T>>: Bas
         self.onTouch = onTouch
     }
     
-    open func onCell(onCell: @escaping (T, U) -> Void) {
+    open func setOnCell(onCell: @escaping (T, U) -> Void) {
         self.onCell = onCell
     }
     

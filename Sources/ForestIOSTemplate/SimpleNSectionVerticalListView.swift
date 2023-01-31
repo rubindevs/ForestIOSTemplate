@@ -59,7 +59,7 @@ public class SimpleNSectionVerticalListView<T: NCodable, U: BaseTableViewHeaderF
         self.onSection = onSection
     }
     
-    open func onCell(onCell: @escaping (T, V) -> Void) {
+    open func setOnCell(onCell: @escaping (T, V) -> Void) {
         self.onCell = onCell
     }
     
