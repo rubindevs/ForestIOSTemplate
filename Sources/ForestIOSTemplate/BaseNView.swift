@@ -10,7 +10,7 @@ import UIKit
 
 open class BaseNView<T: NCodable>: BaseView {
     
-    let id = UUID().uuidString
+    public let id = UUID().uuidString
     
     var local_unregister: (String) -> Void = { uuid in }
     open func register() {

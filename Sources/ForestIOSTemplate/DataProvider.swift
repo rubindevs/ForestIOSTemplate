@@ -7,6 +7,17 @@
 
 import Foundation
 
+struct ApiRequest {
+    let method: String
+    let url: String
+    let parameters: [String: Any]
+    let pathes: [Any]
+    
+    var id: String {
+        return "\(method):\(url)"
+    }
+}
+
 public class DataProvider {
     
     public static let shared = DataProvider()
@@ -15,6 +26,7 @@ public class DataProvider {
     var views: [String: [BaseView]] = [:]
     
     public func register<T: NCodable>(view: BaseNView<T>) -> (String) -> Void {
+        
         if views[T.id] == nil {
             views[T.id] = []
         }
