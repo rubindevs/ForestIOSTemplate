@@ -12,6 +12,7 @@ import Kingfisher
 
 public protocol NModelable {
     static var id: String { get }
+    func width() -> CGFloat
     func height() -> CGFloat
 }
 
