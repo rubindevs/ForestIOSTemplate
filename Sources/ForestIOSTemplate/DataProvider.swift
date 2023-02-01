@@ -6,27 +6,46 @@
 //
 
 import Foundation
+import UIKit
+import Alamofire
 
-struct ApiRequest {
-    let method: String
-    let url: String
-    let parameters: [String: Any]
-    let pathes: [Any]
-    
-    var id: String {
-        return "\(method):\(url)"
-    }
+public struct ApiResult {
+    let modelId: String
+    let request: ApiRequest
+    let result: NCodable?
 }
 
-public class DataProvider {
+public struct ApiResults {
+    let modelId: String
+    let request: ApiRequest
+    let results: [NCodable]?
+}
+
+public protocol ApiRequest {
+    var method: HTTPMethod { get set }
+    var url: String { get set }
+    var encoding: ParameterEncoding? { get set }
+    var parameters: [String: Any] { get set }
+    var pathes: [CVarArg] { get set }
+    
+    var end: String { get }
+    var id: String { get }
+    var defaultEncoding: ParameterEncoding { get }
+    func get<T: NCodable>(type: T.Type) async -> ApiResult?
+    func gets<T: NCodable>(type: T.Type, isAdd: Bool) async -> ApiResults?
+}
+
+public actor DataProvider { // only for get!
     
     public static let shared = DataProvider()
     private init() {}
     
+    var resultDict: [String: ApiResult] = [:]
+    var resultsDict: [String: ApiResults] = [:]
     var views: [String: [BaseView]] = [:]
+    var lastLoadedTimes: [String: Double] = [:]
     
     public func register<T: NCodable>(view: BaseNView<T>) -> (String) -> Void {
-        
         if views[T.id] == nil {
             views[T.id] = []
         }
@@ -37,41 +56,76 @@ public class DataProvider {
         return unregister
     }
     
-    public func startLoading<T: NCodable>(type: T.Type) {
-        views[T.id]?.forEach {
-            if let nview = $0 as? BaseNView<T> {
-                Task {
-                    await nview.onShowLoading()
-                }
+    func checkTime(id: String) -> Bool {
+        if let lastTime = lastLoadedTimes[id] {
+            if Date().timeIntervalSince1970 - lastTime < 1 {
+                return false
+            } else {
+                lastLoadedTimes[id] = Date().timeIntervalSince1970
+            }
+        } else {
+            lastLoadedTimes[id] = Date().timeIntervalSince1970
+        }
+        return true
+    }
+    
+    public func getFromCache<T: NCodable>(type: T.Type, requestId: String) -> T? {
+        return resultDict[requestId]?.result as? T
+    }
+    
+    public func getsFromCache<T: NCodable>(type: T.Type, requestId: String) -> [T]? {
+        return resultsDict[requestId]?.results as? [T]
+    }
+    
+    public func request<T: NCodable>(type: T.Type, loadFromCache: Bool = false, request: ApiRequest) async {
+        guard checkTime(id: request.id) else { return }
+        if !loadFromCache || resultDict[request.id] == nil {
+            await startLoading(type: type)
+            resultDict[request.id] = await request.get(type: type)
+        }
+        let value = resultDict[request.id]?.result as? T
+        await inflate(data: value)
+    }
+    
+    public func requests<T: NCodable>(type: T.Type, loadFromCache: Bool = false, isAdd: Bool = false, request: ApiRequest) async {
+        guard checkTime(id: request.id) else { return }
+        if !loadFromCache || resultsDict[request.id] == nil {
+            await startLoading(type: type)
+            resultsDict[request.id] = await request.gets(type: type, isAdd: isAdd)
+        }
+        let values = resultsDict[request.id]?.results as? [T]
+        await inflate(datas: values)
+    }
+    
+    public func startLoading<T: NCodable>(type: T.Type) async {
+        for view in views[T.id] ?? [] {
+            if let nview = view as? BaseNView<T> {
+                await nview.onShowLoading()
             }
         }
     }
     
-    public func inflate<T: NCodable>(data: T?) {
+    public func inflate<T: NCodable>(data: T?) async {
         if let data = data {
-            views[T.id]?.forEach {
-                if let nview = $0 as? BaseNView<T> {
-                    Task {
-                        await nview.onStopLoading()
-                    }
+            for view in views[T.id] ?? [] {
+                if let nview = view as? BaseNView<T> {
                     DispatchQueue.main.async {
                         nview.inflate(data: data)
                     }
+                    await nview.onStopLoading()
                 }
             }
         }
     }
     
-    public func inflate<T: NCodable>(datas: [T]?) {
+    public func inflate<T: NCodable>(datas: [T]?) async {
         if let datas = datas {
-            views[T.id]?.forEach {
-                if let nview = $0 as? BaseNView<T> {
-                    Task { 
-                        await nview.onStopLoading()
-                    }
+            for view in views[T.id] ?? [] {
+                if let nview = view as? BaseNView<T> {
                     DispatchQueue.main.async {
                         nview.inflate(datas: datas)
                     }
+                    await nview.onStopLoading()
                 }
             }
         }
