@@ -10,15 +10,15 @@ import UIKit
 import Alamofire
 
 public struct ApiResult {
-    let modelId: String
-    let request: ApiRequest
-    let result: NCodable?
+    public let modelId: String
+    public let request: ApiRequest
+    public let result: NCodable?
 }
 
 public struct ApiResults {
-    let modelId: String
-    let request: ApiRequest
-    let results: [NCodable]?
+    public let modelId: String
+    public let request: ApiRequest
+    public let results: [NCodable]?
 }
 
 public protocol ApiRequest {
