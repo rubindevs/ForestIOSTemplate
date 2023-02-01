@@ -14,6 +14,7 @@ public class SimpleNVerticalListView<T: NCodable, U: BaseNTableViewCell<T>>: Bas
     public var onTouch: ((T) -> Void)? = nil
     
     public var datas: [T] = []
+    public var filter: (T) -> Bool = { data in return true }
     public var onCell: ((T, U) -> Void)? = nil
     
     open override func initViews(rootView: UIView) {
@@ -64,6 +65,11 @@ public class SimpleNVerticalListView<T: NCodable, U: BaseNTableViewCell<T>>: Bas
         self.onCell = onCell
     }
     
+    open func setFilter(filter: @escaping (T) -> Bool) {
+        self.filter = filter
+        self.table_main.reloadData()
+    }
+    
     open func calculateHeight() -> CGFloat {
         var totalHeights: CGFloat = 0
         for data in datas {
@@ -85,26 +91,26 @@ public class SimpleNVerticalListView<T: NCodable, U: BaseNTableViewCell<T>>: Bas
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.emptyView.isHidden = !(datas.count == 0 && isEmpty)
-        return datas.count
+        self.emptyView.isHidden = !(datas.filter(self.filter).count == 0 && isEmpty)
+        return datas.filter(self.filter).count
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return datas[indexPath.row].height()
+        return datas.filter(self.filter)[indexPath.row].height()
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let onTouch = onTouch {
             let cell = tableView.dequeueReusableCell(withIdentifier: String(describing: U.self), for: indexPath) as! U
-            cell.set(data: datas[indexPath.row])
-            onCell?(datas[indexPath.row], cell)
+            cell.set(data: datas.filter(self.filter)[indexPath.row])
+            onCell?(datas.filter(self.filter)[indexPath.row], cell)
             return cell
         }
         return UITableViewCell()
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        onTouch?(datas[indexPath.row])
+        onTouch?(datas.filter(self.filter)[indexPath.row])
     }
     
     var isEmpty = false
