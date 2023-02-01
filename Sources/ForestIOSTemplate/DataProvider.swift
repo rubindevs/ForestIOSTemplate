@@ -142,4 +142,9 @@ public actor DataProvider { // only for get!
             }
         }
     }
+    
+    public func removeAllCaches() {
+        resultDict = [:]
+        resultsDict = [:]
+    }
 }
