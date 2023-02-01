@@ -30,7 +30,7 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
         initTable(layout: layout)
     }
     
-    public convenience init(layout: UICollectionViewFlowLayout) {
+    public convenience init(layout: UICollectionViewLayout) {
         self.init()
         initTable(layout: layout)
     }
@@ -54,7 +54,7 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
         initTable(layout: nil)
     }
     
-    func initTable(layout: UICollectionViewFlowLayout?) {
+    func initTable(layout: UICollectionViewLayout?) {
         tableView?.removeFromSuperview()
         if let layout = layout {
             tableView = UICollectionView(frame: self.frame, collectionViewLayout: layout)
@@ -85,10 +85,6 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
         self.onTouch = onTouch
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return cellSize?(indexPath) ?? .zero
-    }
-    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let count = count?() ?? 0
         self.emptyView.isHidden = !(count == 0 && isEmpty)
@@ -111,4 +107,3 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
         isEmpty = true
     }
 }
-
