@@ -10,15 +10,27 @@ import UIKit
 import Alamofire
 
 public struct ApiResult {
-    public let modelId: String
-    public let request: ApiRequest
-    public let result: NCodable?
+    let modelId: String
+    let request: ApiRequest
+    let result: NCodable?
+    
+    public init(modelId: String, request: ApiRequest, result: NCodable?) {
+        self.modelId = modelId
+        self.request = request
+        self.result = result
+    }
 }
 
 public struct ApiResults {
-    public let modelId: String
-    public let request: ApiRequest
-    public let results: [NCodable]?
+    let modelId: String
+    let request: ApiRequest
+    let results: [NCodable]?
+    
+    public init(modelId: String, request: ApiRequest, results: [NCodable]?) {
+        self.modelId = modelId
+        self.request = request
+        self.results = results
+    }
 }
 
 public protocol ApiRequest {
