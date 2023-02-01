@@ -73,7 +73,7 @@ public class SimpleNVerticalListView<T: NCodable, U: BaseNTableViewCell<T>>: Bas
     open func calculateHeight() -> CGFloat {
         var totalHeights: CGFloat = 0
         for data in datas {
-            totalHeights += data.height()
+            totalHeights += data.size.height
         }
         return totalHeights
     }
@@ -96,7 +96,7 @@ public class SimpleNVerticalListView<T: NCodable, U: BaseNTableViewCell<T>>: Bas
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return datas.filter(self.filter)[indexPath.row].height()
+        return datas.filter(self.filter)[indexPath.row].size.height
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
