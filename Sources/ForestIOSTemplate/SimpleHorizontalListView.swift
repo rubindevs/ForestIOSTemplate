@@ -85,6 +85,10 @@ open class SimpleHorizontalListView: BaseView, UICollectionViewDelegate, UIColle
         self.onTouch = onTouch
     }
     
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return cellSize?(indexPath) ?? .zero
+    }
+    
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let count = count?() ?? 0
         self.emptyView.isHidden = !(count == 0 && isEmpty)
