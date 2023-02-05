@@ -97,6 +97,11 @@ public actor DataProvider { // only for get!
         }
         let value = resultDict[request.id]?.result as? T
         await inflate(data: value)
+        
+        let views = self.views[T.id]
+        await BaseNView<T>.putRequestForBaseView(views: views) {
+            await self.request(type: T.self, loadFromCache: loadFromCache, request: request)
+        }
     }
     
     public func requests<T: NCodable>(type: T.Type, loadFromCache: Bool = false, isAdd: Bool = false, request: ApiRequest) async {
@@ -107,6 +112,11 @@ public actor DataProvider { // only for get!
         }
         let values = resultsDict[request.id]?.results as? [T]
         await inflate(datas: values)
+        
+        let views = self.views[T.id]
+        await BaseNView<T>.putRequestForBaseView(views: views) {
+            await self.requests(type: T.self, loadFromCache: loadFromCache, isAdd: isAdd, request: request)
+        }
     }
     
     public func startLoading<T: NCodable>(type: T.Type) async {
@@ -146,5 +156,15 @@ public actor DataProvider { // only for get!
     public func removeAllCaches() {
         resultDict = [:]
         resultsDict = [:]
+    }
+    
+    public func allRefresh() async {
+        for key in views.keys {
+            for view in views[key] ?? [] {
+                if let view = view as? Requestable {
+                    await view.request?()
+                }
+            }
+        }
     }
 }

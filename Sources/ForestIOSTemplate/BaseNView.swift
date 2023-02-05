@@ -8,9 +8,14 @@
 import Foundation
 import UIKit
 
-open class BaseNView<T: NCodable>: BaseView {
+protocol Requestable {
+    var request: (() async -> Void)? { get set }
+}
+
+open class BaseNView<T: NCodable>: BaseView, Requestable {
     
     public let id = UUID().uuidString
+    public var request: (() async -> Void)? = nil
     
     var local_unregister: (String) -> Void = { uuid in }
     open func register() { // TODO: async
@@ -49,5 +54,16 @@ open class BaseNView<T: NCodable>: BaseView {
         view.makeEasyConstraintsFull()
         view.alpha = 1
         view.isHidden = false
+    }
+    
+    static func putRequestForBaseView(views: [BaseView]?, reqeust: @escaping () async -> Void) {
+        let nviews = views?.filter({ $0 is BaseNView<T> }).map({ $0 as! BaseNView<T> }) ?? []
+        for nview in nviews {
+            nview.request = {
+                Task {
+                    await reqeust()
+                }
+            }
+        }
     }
 }
