@@ -100,7 +100,7 @@ public actor DataProvider { // only for get!
         
         let views = self.views[T.id]
         await BaseNView<T>.putRequestForBaseView(views: views) {
-            await self.request(type: T.self, loadFromCache: loadFromCache, request: request)
+            await self.request(type: T.self, loadFromCache: false, request: request)
         }
     }
     
@@ -115,7 +115,7 @@ public actor DataProvider { // only for get!
         
         let views = self.views[T.id]
         await BaseNView<T>.putRequestForBaseView(views: views) {
-            await self.requests(type: T.self, loadFromCache: loadFromCache, isAdd: isAdd, request: request)
+            await self.requests(type: T.self, loadFromCache: false, isAdd: isAdd, request: request)
         }
     }
     
