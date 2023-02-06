@@ -25,33 +25,13 @@ public extension Date {
         return Calendar.current.date(byAdding: .day, value: index, to: self)
     }
     
-    func setYear(year: Int) -> Date? {
-        var components = Calendar.current.dateComponents([.year, .month, .day], from: self)
-        components.year = year
-        return Calendar.current.date(from: components)
-    }
-    
-    func setMonth(month: Int) -> Date? {
-        var components = Calendar.current.dateComponents([.year, .month, .day], from: self)
-        components.month = month
-        return Calendar.current.date(from: components)
-    }
-    
-    func setDay(day: Int) -> Date? {
-        var components = Calendar.current.dateComponents([.year, .month, .day], from: self)
-        components.day = day
-        return Calendar.current.date(from: components)
-    }
-    
-    func setHour(hour: Int) -> Date? {
-        var components = Calendar.current.dateComponents([.hour, .minute], from: self)
-        components.hour = hour
-        return Calendar.current.date(from: components)
-    }
-    
-    func setMinute(minute: Int) -> Date? {
-        var components = Calendar.current.dateComponents([.hour, .minute], from: self)
-        components.minute = minute
+    func set(year: Int? = nil, month: Int? = nil, day: Int? = nil, hour: Int? = nil, minute: Int? = nil) -> Date? {
+        var components = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: self)
+        components.year = year ?? self.year
+        components.month = month ?? self.month
+        components.day = day ?? self.day
+        components.hour = hour ?? self.hour
+        components.minute = minute ?? self.minute
         return Calendar.current.date(from: components)
     }
     
@@ -80,28 +60,10 @@ public extension Date {
         return Calendar.current.component(.year, from: self)
     }
     
-    var dateString: String {
+    func dateString(format: String) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd MMM yyyy"
+        dateFormatter.dateFormat = format
         return dateFormatter.string(from: self)
-    }
-    
-    var dateSimpleString: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MMM dd"
-        return dateFormatter.string(from: self)
-    }
-    
-    var timeString: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "HH:mm:ss"
-        return dateFormatter.string(from: self)
-    }
-    
-    var monthString: String {
-        let df = DateFormatter()
-        df.setLocalizedDateFormatFromTemplate("MMM")
-        return df.string(from: self)
     }
     
     var days: [Date] {
